@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useContext } from "react"
 import { Map, GeoJSON } from "react-leaflet"
 import CountryCard from "./CountryCard"
+import Statistics from "./Statistics"
 import countries from "../data/countries.json"
 import "leaflet/dist/leaflet.css"
 import "../css/world.css"
@@ -26,7 +27,6 @@ const World = () => {
     })
 
     const onCountryClick = (event, code) => {
-        console.log(layersRef.current.leafletElement.getLayers())
 
         getCountryData(code)
         event.target.setStyle({                     //set the style to active
@@ -36,7 +36,6 @@ const World = () => {
     }
 
     const onEachCountry = (country, layer) => {
-        console.log(layer._leaflet_id)
         const code = country.properties.ISO_A3
 
         layer.on({
@@ -50,7 +49,7 @@ const World = () => {
     }
 
     return (
-        <div>
+        <div className="main-container">
             <Map zoom={2} center={[40, 0]}>
                 <GeoJSON ref={layersRef} style={countryStyle} data={countries.features} onEachFeature={onEachCountry}/>
                 {/* <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" noWrap={true}/> */}
@@ -58,7 +57,10 @@ const World = () => {
                     selected && <CountryCard/>
                 }
             </Map>
-            <input type="color" onChange={changeColor}/>          
+            <div>
+                <input type="color" onChange={changeColor}/>
+                <Statistics />  
+            </div>   
         </div>
     )
 }
