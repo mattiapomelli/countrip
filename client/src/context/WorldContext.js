@@ -1,10 +1,11 @@
-import React, {createContext, useState } from 'react'
+import React, {createContext, useState, useRef } from 'react'
 import axios from 'axios'
 
 export const WorldContext = createContext()  //gives us a provider and a consumer
 
 export default ({ children }) => {
     const [selected, setSelected] = useState(null)  //data of the current active country (the one with the popup open)
+    const activeLayer = useRef(null)                //active country layer
 
     const getCountryData = (code) => {
         axios.get(`https://restcountries.eu/rest/v2/alpha/${code}`)
@@ -16,7 +17,7 @@ export default ({ children }) => {
 
     return (    
         <div>
-            <WorldContext.Provider value={{selected, setSelected, getCountryData}}>
+            <WorldContext.Provider value={{selected, setSelected, getCountryData, activeLayer}}>
                 { children }
             </WorldContext.Provider>
         </div>

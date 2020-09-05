@@ -19,24 +19,19 @@ let countryStyle = {
 const World = () => {
     const [color, setColor] = useState("#000")
     const latestColor = useRef("")
-    const { selected, getCountryData } = useContext(WorldContext)
-    //const [position, setPosition] = useState(null) //to open popup where map is clicked, pass it through props to CountryCard
-    const prevActiveLayer = useRef(null)    //previously active country layer
+    const { selected, getCountryData, activeLayer } = useContext(WorldContext)
 
     useEffect(() => {
         latestColor.current = color
     })
 
     const onCountryClick = (event, code) => {
-        //setPosition({lat: event.latlng.lat, lng: event.latlng.lng})
+        console.log('click')
         getCountryData(code)
-        if(prevActiveLayer.current !== null){       //reset the style of the previous active country to default
-            prevActiveLayer.current.setStyle({fillColor: "#1793d4"})
-        }
-        event.target.setStyle({                     //set the style of the current active country
+        event.target.setStyle({                     //set the style to active
              fillColor: "red"
         })
-        prevActiveLayer.current = event.target
+        activeLayer.current = event.target          //set the current active layer
     }
 
     const onEachCountry = (country, layer) => {
