@@ -19,13 +19,15 @@ let countryStyle = {
 const World = () => {
     const [color, setColor] = useState("#000")
     const latestColor = useRef("")
-    const { selected, getCountryData, activeLayer } = useContext(WorldContext)
+    const { selected, getCountryData, activeLayer, layersRef } = useContext(WorldContext)
 
     useEffect(() => {
         latestColor.current = color
     })
 
     const onCountryClick = (event, code) => {
+        console.log(layersRef.current.leafletElement.getLayers())
+
         getCountryData(code)
         event.target.setStyle({                     //set the style to active
              fillColor: "red"
@@ -50,13 +52,13 @@ const World = () => {
     return (
         <div>
             <Map zoom={2} center={[40, 0]}>
-                <GeoJSON style={countryStyle} data={countries.features} onEachFeature={onEachCountry}/>
+                <GeoJSON ref={layersRef} style={countryStyle} data={countries.features} onEachFeature={onEachCountry}/>
                 {/* <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" noWrap={true}/> */}
                 {
                     selected && <CountryCard/>
                 }
             </Map>
-            <input type="color" onChange={changeColor}/>
+            <input type="color" onChange={changeColor}/>          
         </div>
     )
 }
