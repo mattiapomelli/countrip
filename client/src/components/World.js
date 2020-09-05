@@ -1,9 +1,10 @@
-import React, { useState, useEffect, useRef } from "react"
+import React, { useState, useEffect, useRef, useContext } from "react"
 import { Map, GeoJSON, Popup } from "react-leaflet"
 import CountryCard from "./CountryCard"
 import countries from "../data/countries.json"
 import "leaflet/dist/leaflet.css"
 import "../css/world.css"
+import { WorldContext } from "../context/WorldContext"
 
 
 let countryStyle = {
@@ -18,8 +19,8 @@ let countryStyle = {
 const World = () => {
     const [color, setColor] = useState("#000")
     const latestColor = useRef("")
+    const { selected, setSelected, getCountryData } = useContext(WorldContext)
     const [position, setPosition] = useState(null)
-    const [activeCode, setActiveCode] = useState('')
 
     useEffect(() => {
         latestColor.current = color
@@ -27,7 +28,8 @@ const World = () => {
 
     const onCountryClick = (event, code) => {
         setPosition({lat: event.latlng.lat, lng: event.latlng.lng})
-        setActiveCode(code)
+        //setSelected({lat: event.latlng.lat, lng: event.latlng.lng, code: code})
+        getCountryData(code)
         event.target.setStyle({
             fillColor: latestColor.current
         })
@@ -55,9 +57,9 @@ const World = () => {
                 <GeoJSON style={countryStyle} data={countries.features} onEachFeature={onEachCountry}/>
                 {/* <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" noWrap={true}/> */}
                 {
-                    position &&
-                    (<Popup position={[position.lat, position.lng]} onClose={() => {setPosition(null); setActiveCode('')}}>
-                        <CountryCard code={activeCode}/>
+                    selected &&
+                    (<Popup position={[position.lat, position.lng]} onClose={() => {setSelected(null)}}>
+                        <CountryCard/>
                     </Popup>)
                 }
             </Map>

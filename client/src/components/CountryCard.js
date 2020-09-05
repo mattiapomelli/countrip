@@ -1,21 +1,14 @@
-import React, { useEffect, useState } from "react"
-import axios from "axios"
+import React, { useContext } from "react"
+import { WorldContext } from "../context/WorldContext"
 
-const CountryCard = (props) => {
-    const [data, setData] = useState({})
-
-    useEffect(() => {
-        console.log(props)
-        axios.get(`https://restcountries.eu/rest/v2/alpha/RUS`)
-        .then(res => {
-            setData(res.data)
-            console.log(data)
-        })
-        .catch(err => console.log(err))
-    }, [props])
+const CountryCard = () => {
+    const { selected } = useContext(WorldContext)
 
     return (
-        <h1>{props.code}</h1>
+        <div>
+            {selected.name}
+            {selected.population}
+        </div>
     )
 }
 
