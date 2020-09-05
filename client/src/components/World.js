@@ -26,7 +26,6 @@ const World = () => {
     })
 
     const onCountryClick = (event, code) => {
-        console.log('click')
         getCountryData(code)
         event.target.setStyle({                     //set the style to active
              fillColor: "red"
@@ -35,6 +34,7 @@ const World = () => {
     }
 
     const onEachCountry = (country, layer) => {
+        console.log(layer._leaflet_id)
         const code = country.properties.ISO_A3
 
         layer.on({
