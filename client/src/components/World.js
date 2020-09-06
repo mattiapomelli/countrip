@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useContext } from "react"
 import { Map, GeoJSON } from "react-leaflet"
 import CountryCard from "./CountryCard"
 import Statistics from "./Statistics"
-import countries from "../data/countries.json"
+import countriesCoords from "../data/countries2.json"
 import "leaflet/dist/leaflet.css"
 import "../css/world.css"
 import { WorldContext } from "../context/WorldContext"
@@ -51,7 +51,7 @@ const World = () => {
     return (
         <div className="main-container">
             <Map zoom={2} center={[40, 0]}>
-                <GeoJSON ref={layersRef} style={countryStyle} data={countries.features} onEachFeature={onEachCountry}/>
+                <GeoJSON ref={layersRef} style={countryStyle} data={countriesCoords.features} onEachFeature={onEachCountry}/>
                 {/* <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" noWrap={true}/> */}
                 {
                     selected && <CountryCard/>

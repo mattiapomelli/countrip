@@ -31,7 +31,7 @@ export default ({ children }) => {
 
     return (    
         <div>
-            <WorldContext.Provider value={{selected, setSelected, getCountryData, activeLayer, layersRef, countries}}>
+            <WorldContext.Provider value={{selected, setSelected, getCountryData, activeLayer, layersRef, countries, setCountries}}>
                 { children }
             </WorldContext.Provider>
         </div>
