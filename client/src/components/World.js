@@ -20,19 +20,14 @@ let countryStyle = {
 const World = () => {
     const [color, setColor] = useState("#000")
     const latestColor = useRef("")
-    const { selected, getCountryData, activeLayer, layersRef } = useContext(WorldContext)
+    const { selected, layersRef, setActiveLayer } = useContext(WorldContext)
 
     useEffect(() => {
         latestColor.current = color
     })
 
     const onCountryClick = (event, code) => {
-
-        getCountryData(code)
-        event.target.setStyle({                     //set the style to active
-             fillColor: "red"
-        })
-        activeLayer.current = event.target          //set the current active layer
+        setActiveLayer(event.target)
     }
 
     const onEachCountry = (country, layer) => {

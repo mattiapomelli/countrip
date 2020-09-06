@@ -4,13 +4,11 @@ import { Popup } from "react-leaflet"
 import "../css/countrycard.css"
 
 const CountryCard = () => {
-    const { selected, setSelected, activeLayer } = useContext(WorldContext)
+    const { selected, resetActiveLayer } = useContext(WorldContext)
 
     return (
         <Popup position={[selected.latlng[0], selected.latlng[1]]} onClose={() => {
-                setSelected(null)
-                activeLayer.current.setStyle({fillColor: "#1793d4"})    //reset the style to default
-                activeLayer.current = null                              //set active layer to null
+                resetActiveLayer()
             }}>
             <img className="flag-image" src={selected.flag} alt="country flag"/>
             <div className="country-name">{selected.name}</div>

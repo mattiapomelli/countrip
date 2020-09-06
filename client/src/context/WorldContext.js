@@ -29,9 +29,31 @@ export default ({ children }) => {
         .catch(err => console.log(err)) 
     }
 
+    const findLayerByCode = (code) => {
+        const layers = layersRef.current.leafletElement.getLayers()
+        const result = layers.find(layer => layer.feature.properties.ISO_A3 === code)
+        return result
+    }
+
+    const setActiveLayer = (layer) => {
+        getCountryData(layer.feature.properties.ISO_A3)
+        layer.setStyle({fillColor: "red"})
+        activeLayer.current = layer
+    }
+
+    const resetActiveLayer = () => {
+        setSelected(null)
+        if(activeLayer.current){
+            activeLayer.current.setStyle({fillColor: "#1793d4"})
+            activeLayer.current = null
+        }
+    }
+
     return (    
         <div>
-            <WorldContext.Provider value={{selected, setSelected, getCountryData, activeLayer, layersRef, countries, setCountries}}>
+            <WorldContext.Provider
+            value={{selected, setSelected, getCountryData, activeLayer, layersRef, countries,
+                setCountries, findLayerByCode, setActiveLayer, resetActiveLayer}}>
                 { children }
             </WorldContext.Provider>
         </div>
