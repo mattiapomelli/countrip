@@ -1,6 +1,7 @@
 import React, {createContext, useState, useRef, useEffect } from 'react'
 import axios from 'axios'
 import countryCodes from "../countryCodes"
+import mapStyles from "../mapStyles"
 
 export const WorldContext = createContext()  //gives us a provider and a consumer
 
@@ -27,6 +28,11 @@ export default ({ children }) => {
         axios.get("https://restcountries.eu/rest/v2/all?fields=name;alpha3Code;capital;region;population;latlng;area;currencies;languages;flag")
         .then(res => {
             const result = res.data.filter(item => countryCodes.includes(item.alpha3Code))  //keep only official countries, and discard non relevant ones
+            result.sort(function(a, b){             //sort results alphabetically
+                if(a.name < b.name) { return -1; }
+                if(a.name > b.name) { return 1; }
+                return 0;
+            })
             setCountries(result)
             setLoaded(true)
         })
@@ -41,14 +47,14 @@ export default ({ children }) => {
 
     const setActiveLayer = (layer) => {
         getCountryData(layer.feature.properties.ISO_A3)
-        layer.setStyle({fillColor: "red"})
+        layer.setStyle(mapStyles.active)
         activeLayer.current = layer
     }
 
     const resetActiveLayer = () => {
         setSelected(null)
         if(activeLayer.current){
-            activeLayer.current.setStyle({fillColor: "#1793d4"})
+            activeLayer.current.setStyle(mapStyles.name)
             activeLayer.current = null
         }
     }
@@ -58,12 +64,24 @@ export default ({ children }) => {
         return result
     }
 
+    const sortCountries = (property) => {    //receives the property to use for the sorting
+        const sorted = [...countries].sort(function (a, b) { //need to make a copy of the array before to sort it, otherwise it won't be detected any change in the state and the component won't re-render
+            //return b[property] - a[property]
+            if (b[property] < a[property]) {return -1}
+            if (b[property] > a[property]) {return 1}
+            return 0
+        })
+        //sorted.reverse()
+        setCountries(sorted)
+        layersRef.current.leafletElement.setStyle(mapStyles[property])  //set the map style based on property selected for the sorting
+    }
+
     return (    
         <div>
             { !loaded ? <h1>Loading</h1> : 
             <WorldContext.Provider
-            value={{selected, setSelected, getCountryData, activeLayer, layersRef, countries,
-                setCountries, findLayerByCode, setActiveLayer, resetActiveLayer, findCountryByCode}}>
+            value={{selected, layersRef, countries, setCountries, findLayerByCode, setActiveLayer, resetActiveLayer,
+                findCountryByCode, sortCountries}}>
                 { children }
             </WorldContext.Provider>
             }

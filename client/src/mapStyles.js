@@ -1,11 +1,15 @@
 export default {
-    name: {
+    name: {                     //default style: active when countries are sorted by name
         color: "#1793d4",
         opacity: 1,
         weight: 1,	
         fillColor: "#1793d4",
         fillOpacity: 0.6,
         //dashArray: 5
+    },
+
+    active: {
+        color: "black"
     },
 
     population: (feature) => {
