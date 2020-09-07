@@ -1,15 +1,26 @@
 export default {
-    name: {                     //default style: active when countries are sorted by name
-        color: "#1793d4",
-        opacity: 1,
-        weight: 1,	
-        fillColor: "#1793d4",
+
+    default: {
+        color: "#777",
+        weight: 1,
+        opacity: 1,	
         fillOpacity: 0.6,
+        fillColor: "#1793d4", 
         //dashArray: 5
     },
 
+    name: {                     //default style: active when countries are sorted by name
+        fillColor: "#1793d4",   
+    },
+
     active: {
-        color: "black"
+        color: "black",
+        weight: 2
+    },
+
+    nonActive: {
+        color: "#777",
+        weight: 1
     },
 
     population: (feature) => {

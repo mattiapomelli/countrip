@@ -40,7 +40,7 @@ const World = () => {
     return (
         <div className="main-container">
             <Map zoom={2} center={[40, 0]}>
-                <GeoJSON ref={layersRef} style={mapStyles.name} data={countriesCoords.features} onEachFeature={onEachCountry}/>
+                <GeoJSON ref={layersRef} style={mapStyles.default} data={countriesCoords.features} onEachFeature={onEachCountry}/>
                 {/* <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" noWrap={true}/> */}
                 {
                     selected && <CountryCard/>

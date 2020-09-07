@@ -47,14 +47,17 @@ export default ({ children }) => {
 
     const setActiveLayer = (layer) => {
         getCountryData(layer.feature.properties.ISO_A3)
+        layer.bringToFront()
         layer.setStyle(mapStyles.active)
+        //layer.feature.properties.active = true  //attaching active property to the feature so that we can use it for styling
         activeLayer.current = layer
     }
 
     const resetActiveLayer = () => {
         setSelected(null)
         if(activeLayer.current){
-            activeLayer.current.setStyle(mapStyles.name)
+            activeLayer.current.setStyle(mapStyles.nonActive)
+            //activeLayer.current.feature.properties.active = false
             activeLayer.current = null
         }
     }
