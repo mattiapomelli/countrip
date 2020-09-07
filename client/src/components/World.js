@@ -27,15 +27,13 @@ const World = () => {
     })
 
     const onCountryClick = (event, code, name) => {
-        console.log(name)
         setActiveLayer(event.target)
     }
 
-    const onEachCountry = (country, layer) => {
+    const onEachCountry = (country, layer) => { //run once on each feature
         const code = country.properties.ISO_A3
-        //country.properties.population = 3
-        console.log(findCountryByCode(code), code)
-        //country.properties.population = result.population
+        const result = findCountryByCode(code)                  //find country by code of the feature
+        country.properties.population = result.population       //append population data to the layer's feature so we can access it from there later
 
         layer.on({
             click: (event) => onCountryClick(event, code, country.properties.ADMIN)
@@ -56,9 +54,8 @@ const World = () => {
                     selected && <CountryCard/>
                 }
             </Map>
-            <div>
+            <div className="statistics-container">
                 <input type="color" onChange={changeColor}/>
-                <button onClick={() => console.log(findCountryByCode('RUS'))}></button>
                 <Statistics />  
             </div>   
         </div>

@@ -23,14 +23,15 @@ const Statistics = () => {
 
     function style(feature) {
         return {
-            fillColor: getColor(feature.properties.POP_EST)
+            fillColor: getColor(feature.properties.population)
         }
     }
 
     const sortByPopulation = () => {
-        setCountries(countries.sort(function (a, b) {
+        const sorted = [...countries].sort(function (a, b) { //need to make a copy of the array before to sort it, otherwise it won't be detected any change in the state and the component won't re-render
             return b.population - a.population
-        }))
+        })
+        setCountries(sorted)
         layersRef.current.leafletElement.setStyle(style)
 
     }

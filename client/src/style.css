@@ -7,3 +7,8 @@ body {
     display: grid;
     grid-template-columns: 80% 20%;
 }
+
+.statistics-container {
+    height: 80vh;
+    overflow: auto;
+}
