@@ -17,7 +17,7 @@ const World = () => {
         latestColor.current = color
     })
 
-    const onCountryClick = (event, code, name) => {
+    const onCountryClick = (event) => {
         setActiveLayer(event.target)
     }
 

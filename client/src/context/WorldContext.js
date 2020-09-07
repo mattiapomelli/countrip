@@ -1,5 +1,6 @@
 import React, {createContext, useState, useRef, useEffect } from 'react'
 import axios from 'axios'
+import countryCodes from "../countryCodes"
 
 export const WorldContext = createContext()  //gives us a provider and a consumer
 
@@ -23,9 +24,10 @@ export default ({ children }) => {
     }
 
     const getAllCountriesData = () => {
-        axios.get("https://restcountries.eu/rest/v2/all")
+        axios.get("https://restcountries.eu/rest/v2/all?fields=name;alpha3Code;capital;region;population;latlng;area;currencies;languages;flag")
         .then(res => {
-            setCountries(res.data)
+            const result = res.data.filter(item => countryCodes.includes(item.alpha3Code))  //keep only official countries, and discard non relevant ones
+            setCountries(result)
             setLoaded(true)
         })
         .catch(err => console.log(err)) 
