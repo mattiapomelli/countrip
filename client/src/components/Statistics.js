@@ -1,5 +1,6 @@
 import React, { useContext } from "react"
 import { WorldContext } from "../context/WorldContext"
+import mapStyles from "../mapStyles"
 
 const Statistics = () => {
     const { countries, setCountries, layersRef, findLayerByCode, setActiveLayer, resetActiveLayer } = useContext(WorldContext)
@@ -10,35 +11,24 @@ const Statistics = () => {
         setActiveLayer(layer)
     }
 
-    function getColor(d) {
-        return d > 100000000 ? '#800026' :
-           d > 50000000  ? '#BD0026' :
-           d > 20000000 ? '#E31A1C' :
-           d > 10000000  ? '#FC4E2A' :
-           d > 5000000   ? '#FD8D3C' :
-           d > 2000000   ? '#FEB24C' :
-           d > 1000000   ? '#FED976' :
-                      '#FFEDA0';
-    }
-
-    function style(feature) {
-        return {
-            fillColor: getColor(feature.properties.population)
-        }
-    }
-
-    const sortByPopulation = () => {
+    const sortCountries = (property) => {    //receives the property to use for the sorting
         const sorted = [...countries].sort(function (a, b) { //need to make a copy of the array before to sort it, otherwise it won't be detected any change in the state and the component won't re-render
-            return b.population - a.population
+            //return b[property] - a[property]
+            if (b[property] < a[property]) {return -1}
+            if (b[property] > a[property]) {return 1}
+            return 0
         })
+        //sorted.reverse()
         setCountries(sorted)
-        layersRef.current.leafletElement.setStyle(style)
+        layersRef.current.leafletElement.setStyle(mapStyles[property])  //set the map style based on property selected for the sorting
 
     }
 
     return (
         <div>
-            <button onClick={sortByPopulation}>Sort</button>
+            <button onClick={() => sortCountries("name")}>Name</button>
+            <button onClick={() => sortCountries("population")}>Population</button>
+            <button onClick={() => sortCountries("area")}>Area</button>
             {
                 countries.map((country, index) => {
                     return (
