@@ -11,12 +11,19 @@ const Statistics = () => {
     }
 
     function getColor(d) {
-        return d === 'RUS' ? "red" : "green"
+        return d > 100000000 ? '#800026' :
+           d > 50000000  ? '#BD0026' :
+           d > 20000000 ? '#E31A1C' :
+           d > 10000000  ? '#FC4E2A' :
+           d > 5000000   ? '#FD8D3C' :
+           d > 2000000   ? '#FEB24C' :
+           d > 1000000   ? '#FED976' :
+                      '#FFEDA0';
     }
 
     function style(feature) {
         return {
-            fillColor: getColor(feature.properties.ISO_A3)
+            fillColor: getColor(feature.properties.POP_EST)
         }
     }
 

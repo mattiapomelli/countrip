@@ -8,6 +8,7 @@ export default ({ children }) => {
     const activeLayer = useRef(null)                //active country layer
     const layersRef = useRef()                      //ref to all layers
     const [countries, setCountries] = useState([])
+    const [loaded, setLoaded] = useState(false)
 
     useEffect(() => {
         getAllCountriesData()
@@ -25,6 +26,7 @@ export default ({ children }) => {
         axios.get("https://restcountries.eu/rest/v2/all")
         .then(res => {
             setCountries(res.data)
+            setLoaded(true)
         })
         .catch(err => console.log(err)) 
     }
@@ -49,13 +51,20 @@ export default ({ children }) => {
         }
     }
 
+    const findCountryByCode = (code) => {
+        const result = countries.find(country => country.alpha3Code === code)
+        return result
+    }
+
     return (    
         <div>
+            { !loaded ? <h1>Loading</h1> : 
             <WorldContext.Provider
             value={{selected, setSelected, getCountryData, activeLayer, layersRef, countries,
-                setCountries, findLayerByCode, setActiveLayer, resetActiveLayer}}>
+                setCountries, findLayerByCode, setActiveLayer, resetActiveLayer, findCountryByCode}}>
                 { children }
             </WorldContext.Provider>
+            }
         </div>
     )
 }

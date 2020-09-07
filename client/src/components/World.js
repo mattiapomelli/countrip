@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useContext } from "react"
 import { Map, GeoJSON } from "react-leaflet"
 import CountryCard from "./CountryCard"
 import Statistics from "./Statistics"
-import countriesCoords from "../data/countries2.json"
+import countriesCoords from "../data/countriesSimplified10.json"
 import "leaflet/dist/leaflet.css"
 import "../css/world.css"
 import { WorldContext } from "../context/WorldContext"
@@ -13,28 +13,32 @@ let countryStyle = {
     opacity: 1,
 	weight: 1,	
 	fillColor: "#1793d4",
-    fillOpacity: 0.4,
+    fillOpacity: 0.6,
     //dashArray: 5
 }
 
 const World = () => {
     const [color, setColor] = useState("#000")
     const latestColor = useRef("")
-    const { selected, layersRef, setActiveLayer } = useContext(WorldContext)
+    const { selected, layersRef, setActiveLayer, findCountryByCode } = useContext(WorldContext)
 
     useEffect(() => {
         latestColor.current = color
     })
 
-    const onCountryClick = (event, code) => {
+    const onCountryClick = (event, code, name) => {
+        console.log(name)
         setActiveLayer(event.target)
     }
 
     const onEachCountry = (country, layer) => {
         const code = country.properties.ISO_A3
+        //country.properties.population = 3
+        console.log(findCountryByCode(code), code)
+        //country.properties.population = result.population
 
         layer.on({
-            click: (event) => onCountryClick(event, code)
+            click: (event) => onCountryClick(event, code, country.properties.ADMIN)
             //mouseover
         })
     }
@@ -54,6 +58,7 @@ const World = () => {
             </Map>
             <div>
                 <input type="color" onChange={changeColor}/>
+                <button onClick={() => console.log(findCountryByCode('RUS'))}></button>
                 <Statistics />  
             </div>   
         </div>
