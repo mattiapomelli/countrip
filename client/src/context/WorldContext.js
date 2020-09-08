@@ -1,7 +1,7 @@
 import React, {createContext, useState, useRef, useEffect } from 'react'
 import axios from 'axios'
-import countryCodes from "../countryCodes"
-import mapStyles from "../mapStyles"
+import countryCodes from "../utils/countryCodes"
+import mapStyles from "../utils/mapStyles"
 
 export const WorldContext = createContext()  //gives us a provider and a consumer
 

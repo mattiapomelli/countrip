@@ -13,9 +13,9 @@ const CountryCard = () => {
                 <img src={selected.flag} alt="country flag"/>
                 <div>{selected.name}</div>
                 <div>Capital City: {selected.capital}</div>
-                <div>Population: {selected.population}</div>
+                <div>Population: {selected.population.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")}</div>
                 <div>Region: {selected.region}</div>
-                <div>Area: {selected.area}</div>
+                <div>Area: {selected.area.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")}</div>
                 <div>
                     Languages: 
                     {

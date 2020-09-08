@@ -4,7 +4,7 @@ export default {
         color: "#777",
         weight: 1,
         opacity: 1,	
-        fillOpacity: 0.6,
+        fillOpacity: 0.8,
         fillColor: "#1793d4", 
         //dashArray: 5
     },

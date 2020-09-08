@@ -25,7 +25,23 @@ table {
     color: white;
 }
 
-td, th {
+th {
+    padding: 7px 10px;
+    height: 40px;
+    box-sizing: border-box;
+}
+
+th span {
+    font-size: 0.8em;
+    font-weight: 600;
+}
+
+th sup {
+    font-size: .7em;
+    vertical-align: top;
+}
+
+td {
     padding: 5px 10px
 }
 

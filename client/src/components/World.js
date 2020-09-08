@@ -1,13 +1,14 @@
 import React, { useState, useEffect, useRef, useContext } from "react"
 import { Map, GeoJSON, Marker } from "react-leaflet"
 import { Icon } from "leaflet";
+import Control from "react-leaflet-control"
 import CountryCard from "./CountryCard"
 import Statistics from "./Statistics"
 import countriesCoords from "../data/countriesSimplified10.json"
 import "leaflet/dist/leaflet.css"
 import "../css/world.css"
 import { WorldContext } from "../context/WorldContext"
-import mapStyles from "../mapStyles"
+import mapStyles from "../utils/mapStyles"
 
 const markerIcon = new Icon({
     iconUrl: "/icons/markericon.svg",
@@ -53,6 +54,18 @@ const World = () => {
                 {
                     selected && <Marker position={[selected.latlng[0], selected.latlng[1]]} icon={markerIcon}/>
                 }
+                <Control position="topright">
+                    <div className="legend">
+                        <i style={{backgroundColor: "#FFEDA0"}}></i>0 - 1000000<br />
+                        <i style={{backgroundColor: "#FED976"}}></i>1.000.000 - 2.000.000<br />
+                        <i style={{backgroundColor: "#FEB24C"}}></i>2.000.000 - 5.000.000<br />
+                        <i style={{backgroundColor: "#FD8D3C"}}></i>5.000.000 - 10.000.000<br />
+                        <i style={{backgroundColor: "#FC4E2A"}}></i>10.000.000 - 20.000.000<br />
+                        <i style={{backgroundColor: "#E31A1C"}}></i>20.000.000 - 50.000.000<br />
+                        <i style={{backgroundColor: "#BD0026"}}></i>50.000.000 - 100.000.000<br />
+                        <i style={{backgroundColor: "#800026"}}></i>100.000.000 + 
+                    </div>
+                </Control>
             </Map>
   
             <CountryCard />

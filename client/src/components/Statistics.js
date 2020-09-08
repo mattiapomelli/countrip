@@ -5,7 +5,7 @@ import "../css/statistics.css"
 
 const Statistics = () => {
     const { countries, findLayerByCode, setActiveLayer, resetActiveLayer, sortCountries } = useContext(WorldContext)
-    const [ sortType, setSortType ] = useState({population: false, area: false})
+    const [ sortType, setSortType ] = useState({name: true, population: false, area: false})
 
     const selectCountry = (code) => {
         const layer = findLayerByCode(code)
@@ -19,11 +19,12 @@ const Statistics = () => {
             <table className="statistics-table">
                 <thead>
                     <tr className="table-head">
-                        <th style={{width: "50%"}}onClick={() => sortCountries("name")}>Name</th>
+                        <th style={{width: "50%"}} onClick={() => {sortCountries("name", sortType.name);
+                                            setSortType({...sortType, name: !sortType.name})}}>Name</th>
                         <th onClick={() => {sortCountries("population", sortType.population);
                                             setSortType({...sortType, population: !sortType.population})}}>Population</th>
                         <th onClick={() => {sortCountries("area", sortType.area);
-                                            setSortType({...sortType, area: !sortType.area})}}>Area</th>
+                                            setSortType({...sortType, area: !sortType.area})}}>Area <span>(km<sup>2</sup>)</span></th>
                     </tr>
                 </thead>
                 <tbody>
