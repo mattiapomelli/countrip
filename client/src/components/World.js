@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useContext } from "react"
-import { Map, GeoJSON } from "react-leaflet"
+import { Map, GeoJSON, Marker } from "react-leaflet"
+import { Icon } from "leaflet";
 import CountryPopup from "./CountryPopup"
 import CountryCard from "./CountryCard"
 import Statistics from "./Statistics"
@@ -9,16 +10,23 @@ import "../css/world.css"
 import { WorldContext } from "../context/WorldContext"
 import mapStyles from "../mapStyles"
 
+const markerIcon = new Icon({
+    iconUrl: "/icons/markericon.svg",
+    iconSize: [30, 30],
+    iconAnchor: [15, 30]
+})
+
 const World = () => {
     const [color, setColor] = useState("#000")
     const latestColor = useRef("")
-    const { selected, layersRef, setActiveLayer, findCountryByCode } = useContext(WorldContext)
+    const { selected, layersRef, setActiveLayer, findCountryByCode, resetActiveLayer } = useContext(WorldContext)
 
     useEffect(() => {
         latestColor.current = color
     })
 
     const onCountryClick = (event) => {
+        console.log("country")
         setActiveLayer(event.target)
     }
 
@@ -40,11 +48,11 @@ const World = () => {
 
     return (
         <div className="main-container">
-            <Map zoom={2} center={[40, 0]}>
+            <Map zoom={2} center={[40, 0]} onclick={() => console.log("map")}>
                 <GeoJSON ref={layersRef} style={mapStyles.default} data={countriesCoords.features} onEachFeature={onEachCountry}/>
                 {/* <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" noWrap={true}/> */}
                 {
-                    selected && <CountryPopup/>
+                    selected && <Marker position={[selected.latlng[0], selected.latlng[1]]} icon={markerIcon}/>
                 }
             </Map>
   

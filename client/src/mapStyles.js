@@ -14,7 +14,7 @@ export default {
     },
 
     active: {
-        color: "black",
+        color: "#222",
         weight: 2
     },
 

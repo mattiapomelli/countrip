@@ -46,6 +46,7 @@ export default ({ children }) => {
     }
 
     const setActiveLayer = (layer) => {
+        resetActiveLayer()
         getCountryData(layer.feature.properties.ISO_A3)
         layer.bringToFront()
         layer.setStyle(mapStyles.active)
