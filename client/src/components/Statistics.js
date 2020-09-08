@@ -14,7 +14,7 @@ const Statistics = () => {
     }
 
     return (
-        <div>
+        <div className="table-container">
             <table className="statistics-table">
             <thead>
                 <tr className="table-head">
@@ -38,12 +38,7 @@ const Statistics = () => {
                     })
                 }
             </tbody>
-            </table>
-            
-           
-
-            
-            
+            </table>                 
         </div>
     )
 }

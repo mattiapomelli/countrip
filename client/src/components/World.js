@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useContext } from "react"
 import { Map, GeoJSON } from "react-leaflet"
+import CountryPopup from "./CountryPopup"
 import CountryCard from "./CountryCard"
 import Statistics from "./Statistics"
 import countriesCoords from "../data/countriesSimplified10.json"
@@ -43,13 +44,13 @@ const World = () => {
                 <GeoJSON ref={layersRef} style={mapStyles.default} data={countriesCoords.features} onEachFeature={onEachCountry}/>
                 {/* <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" noWrap={true}/> */}
                 {
-                    selected && <CountryCard/>
+                    selected && <CountryPopup/>
                 }
             </Map>
-            <div className="statistics-container">
-                {/* <input type="color" onChange={changeColor}/> */}
-                <Statistics />  
-            </div>   
+  
+            <CountryCard />
+            {/* <input type="color" onChange={changeColor}/> */}
+            <Statistics />    
         </div>
     )
 }

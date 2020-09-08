@@ -12,16 +12,16 @@ body {
 .main-container {
     display: grid;
     grid-template-columns: 2fr 1fr;
+    grid-template-rows: 300px 600px;
     grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    grid-template-areas: 
+    "map card"
+    "map stats";
 }
 
 .leaflet-container {
-    height: 80vh;
     margin: 0;
-    background-color: #d9ebeb
-}
-
-.statistics-container {
-    height: 80vh;
-    overflow: auto;
+    background-color: #d9ebeb;
+    grid-area: map;
 }

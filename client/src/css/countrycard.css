@@ -1,22 +1,12 @@
-.leaflet-popup {
-    max-width: 200px;
-}
-
-.leaflet-popup-content-wrapper, .leaflet-popup-tip {
-    background: #eee !important;
+.country-card {
+    grid-area: card;
     font-family: 'Poppins', sans-serif;
+    background: #eee;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 20px;
 }
 
-.leaflet-popup-content {
-    max-width: auto !important;
-}
-
-.flag-image {
-    width: 100%;
-}
-
-.country-name {
-    font-size: 16px;
-    font-weight: 600;
-    margin: 10px 0;
+.country-card img {
+    height: 100px;
 }

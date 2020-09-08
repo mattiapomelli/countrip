@@ -1,8 +1,14 @@
 .statistics-table {
     font-family: 'Poppins', sans-serif;
     font-size: 14px;
-    background-color: #eee;
+    background-color: #eeeeee;
     padding: 0px 20px;
+}
+
+.table-container {
+    height: 100%;
+    overflow: auto;
+    grid-area: stats;
 }
 
 .table-head {

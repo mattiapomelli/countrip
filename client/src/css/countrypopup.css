@@ -1,0 +1,22 @@
+.leaflet-popup {
+    max-width: 200px;
+}
+
+.leaflet-popup-content-wrapper, .leaflet-popup-tip {
+    background: #eee !important;
+    font-family: 'Poppins', sans-serif;
+}
+
+.leaflet-popup-content {
+    max-width: auto !important;
+}
+
+.flag-image {
+    width: 100%;
+}
+
+.country-name {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 10px 0;
+}
