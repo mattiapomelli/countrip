@@ -3,9 +3,22 @@ body {
     margin: 0;
 }
 
+.App {
+    max-width: 95%;
+    margin: auto;
+    padding-top: 10px;
+}
+
 .main-container {
     display: grid;
-    grid-template-columns: 80% 20%;
+    grid-template-columns: 2fr 1fr;
+    grid-column-gap: 10px;
+}
+
+.leaflet-container {
+    height: 80vh;
+    margin: 0;
+    background-color: #d9ebeb
 }
 
 .statistics-container {

@@ -47,7 +47,7 @@ const World = () => {
                 }
             </Map>
             <div className="statistics-container">
-                <input type="color" onChange={changeColor}/>
+                {/* <input type="color" onChange={changeColor}/> */}
                 <Statistics />  
             </div>   
         </div>

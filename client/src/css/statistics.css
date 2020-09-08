@@ -1,0 +1,11 @@
+.statistics-table {
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    background-color: #eee;
+    padding: 0px 20px;
+}
+
+.table-head {
+    border: 1px solid black;
+    text-align: left;
+}
