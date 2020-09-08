@@ -14,6 +14,7 @@ const CountryCard = () => {
             <div className="country-name">{selected.name}</div>
             <div>Capital City: {selected.capital}</div>
             <div>Population: {selected.population}</div>
+            <div>Area: {selected.area}</div>
             <div>
                 Languages: 
                 {
