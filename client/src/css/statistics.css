@@ -1,17 +1,35 @@
-.statistics-table {
-    font-family: 'Poppins', sans-serif;
-    font-size: 14px;
-    background-color: #eeeeee;
-    padding: 0px 20px;
-}
-
-.table-container {
+.statistics-container {
     height: 100%;
-    overflow: auto;
     grid-area: stats;
 }
 
-.table-head {
-    border: 1px solid black;
-    text-align: left;
+table {
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    background-color: #eeeeee;
+    width: 100%;
+    padding: 0px 20px;
+    border-collapse: collapse;
 }
+
+.table-wrapper {
+    overflow-y: scroll;
+    height: 600px;
+}
+
+.table-wrapper th {
+    position: sticky;
+    top: 0;
+    text-align: left;
+    background: #051E34;
+    color: white;
+}
+
+td, th {
+    padding: 5px 10px
+}
+
+tbody tr:nth-child(even) {
+    background-color: #fff;
+}
+

@@ -21,6 +21,12 @@ const CountryCard = () => {
                         selected.languages.map((language, index) => { return (<span key={index}> {language.name}</span>)})
                     }
                 </div>
+                <div>
+                    Currencies: 
+                    {
+                        selected.currencies.map((currency, index) => { return (<span key={index}> {currency.name}</span>)})
+                    }
+                </div>
                 </>
             ) : <h4>Select a country</h4>
         }

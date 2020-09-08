@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef, useContext } from "react"
 import { Map, GeoJSON, Marker } from "react-leaflet"
 import { Icon } from "leaflet";
-import CountryPopup from "./CountryPopup"
 import CountryCard from "./CountryCard"
 import Statistics from "./Statistics"
 import countriesCoords from "../data/countriesSimplified10.json"
@@ -19,7 +18,7 @@ const markerIcon = new Icon({
 const World = () => {
     const [color, setColor] = useState("#000")
     const latestColor = useRef("")
-    const { selected, layersRef, setActiveLayer, findCountryByCode, resetActiveLayer } = useContext(WorldContext)
+    const { selected, layersRef, setActiveLayer, findCountryByCode } = useContext(WorldContext)
 
     useEffect(() => {
         latestColor.current = color
