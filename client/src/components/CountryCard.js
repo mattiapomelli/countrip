@@ -14,6 +14,7 @@ const CountryCard = () => {
                 <div>{selected.name}</div>
                 <div>Capital City: {selected.capital}</div>
                 <div>Population: {selected.population}</div>
+                <div>Region: {selected.region}</div>
                 <div>Area: {selected.area}</div>
                 <div>
                     Languages: 
@@ -27,6 +28,13 @@ const CountryCard = () => {
                         selected.currencies.map((currency, index) => { return (<span key={index}> {currency.name}</span>)})
                     }
                 </div>
+                <div>
+                    Timezones: 
+                    {
+                        selected.timezones.map((timezone, index) => { return (<span key={index}> {timezone}</span>)})
+                    }
+                </div>
+
                 </>
             ) : <h4>Select a country</h4>
         }

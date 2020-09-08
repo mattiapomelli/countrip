@@ -14,7 +14,7 @@ table {
 
 .table-wrapper {
     overflow-y: scroll;
-    height: 600px;
+    height: 60vh;
 }
 
 .table-wrapper th {
