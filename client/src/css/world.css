@@ -1,3 +1,9 @@
+.leaflet-container {
+    margin: 0;
+    background-color: #d9ebeb;
+    grid-area: map;
+}
+
 .legend {
     background-color: #fff;
     border-radius: 10px;

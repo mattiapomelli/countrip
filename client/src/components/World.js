@@ -9,6 +9,7 @@ import "leaflet/dist/leaflet.css"
 import "../css/world.css"
 import { WorldContext } from "../context/WorldContext"
 import mapStyles from "../utils/mapStyles"
+import { getPopulationColor } from "../utils/colors"
 
 const markerIcon = new Icon({
     iconUrl: "/icons/markericon.svg",
@@ -42,6 +43,20 @@ const World = () => {
         })
     }
 
+    const renderLegend = () => {
+        let grades = [0, 1000000, 2000000, 5000000, 10000000, 20000000, 50000000, 100000000]
+        let items = []
+
+        for (const [index, value] of grades.entries()){
+            items.push(<div className="legend-item">
+                <i style ={{backgroundColor: getPopulationColor(value + 1)}}></i>
+                <span>{value.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")}
+                {grades[index + 1] ? " - " +  grades[index + 1].toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") : "+"}</span>
+            </div>)
+        }
+        return items
+    }
+
     const changeColor = (event) => {
         setColor(event.target.value)
     }
@@ -56,13 +71,15 @@ const World = () => {
                 }
                 <Control position="topright">
                     <div className="legend">
-                        <div className="legend-item"><i style={{backgroundColor: "#FED976"}}></i><span>1.000.000 - 2.000.000</span></div>
+                        {renderLegend()}
+
+                       {/*  <div className="legend-item"><i style={{backgroundColor: "#FED976"}}></i><span>1.000.000 - 2.000.000</span></div>
                         <div className="legend-item"><i style={{backgroundColor: "#FEB24C"}}></i><span>2.000.000 - 5.000.000</span></div>
                         <div className="legend-item"><i style={{backgroundColor: "#FD8D3C"}}></i><span>5.000.000 - 10.000.000</span></div>
                         <div className="legend-item"><i style={{backgroundColor: "#FC4E2A"}}></i><span>10.000.000 - 20.000.000</span></div>
                         <div className="legend-item"><i style={{backgroundColor: "#E31A1C"}}></i><span>20.000.000 - 50.000.000</span></div>
                         <div className="legend-item"><i style={{backgroundColor: "#BD0026"}}></i><span>50.000.000 - 100.000.000</span></div>
-                        <div className="legend-item"><i style={{backgroundColor: "#800026"}}></i><span>100.000.000 + </span></div>
+                        <div className="legend-item"><i style={{backgroundColor: "#800026"}}></i><span>100.000.000 + </span></div> */}
                     </div>
                 </Control>
             </Map>

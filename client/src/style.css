@@ -22,8 +22,3 @@ body {
     box-sizing: border-box;
 }
 
-.leaflet-container {
-    margin: 0;
-    background-color: #d9ebeb;
-    grid-area: map;
-}
