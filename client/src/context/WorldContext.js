@@ -26,7 +26,7 @@ export default ({ children }) => {
     }
 
     const getAllCountriesData = () => { //get basic data for all countries to display in the table
-        axios.get("https://restcountries.eu/rest/v2/all?fields=name;alpha3Code;capital;region;population;latlng;area;currencies;languages;flag")
+        axios.get("https://restcountries.eu/rest/v2/all?fields=name;alpha3Code;population;area;")
         .then(res => {
             const result = res.data.filter(item => countryCodes.includes(item.alpha3Code))  //keep only official countries, and discard non relevant ones
             result.sort(function(a, b){             //sort results alphabetically

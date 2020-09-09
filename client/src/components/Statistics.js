@@ -5,8 +5,8 @@ import { formatNumber } from "../utils/utils"
 
 
 const Statistics = () => {
-    const { countries, findLayerByCode, setActiveLayer, resetActiveLayer, sortCountries, setActiveProperty } = useContext(WorldContext)
-    const [ sortType, setSortType ] = useState({name: true, population: false, area: false})
+    const { countries, findLayerByCode, setActiveLayer, resetActiveLayer, sortCountries, setActiveProperty, activeProperty } = useContext(WorldContext)
+    const [ sortType, setSortType ] = useState({name: false, population: false, area: false})
 
     const selectCountry = (code) => {
         const layer = findLayerByCode(code)
@@ -15,24 +15,51 @@ const Statistics = () => {
     }
     
     const toggleSortType = (property) => {
-        setSortType({...sortType, [property]: !sortType[property]})
+        setSortType({   //toggle sort type of the clicked property and set others to default value
+            name: property === "name" ? !sortType.name : true,
+            population: property === "population" ? !sortType.population : false,
+            area: property === "area" ? !sortType.area : false,
+        })
     }
 
     const onPropertyChange = (property) => {        //sets the whole envinronment to display data according to the selected property
         sortCountries(property, sortType[property])
         toggleSortType(property)
-        setActiveProperty(property)
+        if (activeProperty !== property){
+            setActiveProperty(property)
+        }
     }
 
     return (
         <div className="statistics-container">
             <div className="table-wrapper">
             <table>
-                <thead>
+                <thead className="pointer">
                     <tr className="table-head">
-                        <th style={{width: "50%"}} onClick={() => {onPropertyChange("name")}}>Name</th>
-                        <th onClick={() => {onPropertyChange("population")}}>Population</th>
-                        <th onClick={() => {onPropertyChange("area")}}>Area <span>(km<sup>2</sup>)</span></th>
+                        <th style={{width: "50%"}} onClick={() => {onPropertyChange("name")}}>
+                            Name
+                            {
+                                activeProperty === "name" ?
+                                <img className={`sort-icon${sortType.name ? ' rotated' : ''}`} alt="arrow icon" src="/icons/arrowup.svg"/>
+                                : null
+                            }                      
+                        </th>
+                        <th style={{width: "25%"}} onClick={() => {onPropertyChange("population")}}>
+                            Population
+                            {
+                                activeProperty === "population" ?
+                                <img className={`sort-icon${!sortType.population ? ' rotated' : ''}`} alt="arrow icon" src="/icons/arrowup.svg"/>
+                                : null
+                            }
+                        </th>
+                        <th style={{width: "25%"}} onClick={() => {onPropertyChange("area")}}>
+                            Area <span>(km<sup>2</sup>)</span>
+                            {
+                                activeProperty === "area" ?
+                                <img className={`sort-icon${!sortType.area ? ' rotated' : ''}`} alt="arrow icon" src="/icons/arrowup.svg"/>
+                                : null
+                            }
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -40,7 +67,7 @@ const Statistics = () => {
                         countries.map((country, index) => {
                             return (
                                 <tr key={index}>
-                                    <td onClick={() => selectCountry(country.alpha3Code)}>{country.name}</td>
+                                    <td onClick={() => selectCountry(country.alpha3Code)} className="pointer">{country.name}</td>
                                     <td>{formatNumber(country.population)}</td>
                                     <td>{country.area ? formatNumber(country.area) : "N.A."}</td>
                                 </tr>

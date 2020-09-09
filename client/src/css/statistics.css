@@ -25,11 +25,8 @@ table {
     color: white;
 }
 
-thead {
-    cursor: pointer;
-}
-
 th {
+    border: 1px solid white;
     padding: 7px 10px;
     height: 40px;
     box-sizing: border-box;
@@ -58,3 +55,19 @@ tbody tr:nth-child(even) {
     background-color: #fff;
 }
 
+.pointer {
+    cursor: pointer;
+}
+
+.sort-icon {
+    margin-left: 5px;
+    -webkit-transition: -webkit-transform .3s ease-in-out;
+    -ms-transition: -ms-transform .3s ease-in-out;
+    transition: transform .3s ease-in-out;
+}
+
+.rotated {
+    transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+}
