@@ -56,14 +56,13 @@ const World = () => {
                 }
                 <Control position="topright">
                     <div className="legend">
-                        <i style={{backgroundColor: "#FFEDA0"}}></i>0 - 1000000<br />
-                        <i style={{backgroundColor: "#FED976"}}></i>1.000.000 - 2.000.000<br />
-                        <i style={{backgroundColor: "#FEB24C"}}></i>2.000.000 - 5.000.000<br />
-                        <i style={{backgroundColor: "#FD8D3C"}}></i>5.000.000 - 10.000.000<br />
-                        <i style={{backgroundColor: "#FC4E2A"}}></i>10.000.000 - 20.000.000<br />
-                        <i style={{backgroundColor: "#E31A1C"}}></i>20.000.000 - 50.000.000<br />
-                        <i style={{backgroundColor: "#BD0026"}}></i>50.000.000 - 100.000.000<br />
-                        <i style={{backgroundColor: "#800026"}}></i>100.000.000 + 
+                        <div className="legend-item"><i style={{backgroundColor: "#FED976"}}></i><span>1.000.000 - 2.000.000</span></div>
+                        <div className="legend-item"><i style={{backgroundColor: "#FEB24C"}}></i><span>2.000.000 - 5.000.000</span></div>
+                        <div className="legend-item"><i style={{backgroundColor: "#FD8D3C"}}></i><span>5.000.000 - 10.000.000</span></div>
+                        <div className="legend-item"><i style={{backgroundColor: "#FC4E2A"}}></i><span>10.000.000 - 20.000.000</span></div>
+                        <div className="legend-item"><i style={{backgroundColor: "#E31A1C"}}></i><span>20.000.000 - 50.000.000</span></div>
+                        <div className="legend-item"><i style={{backgroundColor: "#BD0026"}}></i><span>50.000.000 - 100.000.000</span></div>
+                        <div className="legend-item"><i style={{backgroundColor: "#800026"}}></i><span>100.000.000 + </span></div>
                     </div>
                 </Control>
             </Map>
