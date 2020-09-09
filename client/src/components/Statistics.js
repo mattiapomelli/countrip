@@ -13,22 +13,26 @@ const Statistics = () => {
         resetActiveLayer()
         setActiveLayer(layer)
     }
+    
+    const toggleSortType = (property) => {
+        setSortType({...sortType, [property]: !sortType[property]})
+    }
+
+    const onPropertyChange = (property) => {        //sets the whole envinronment to display data according to the selected property
+        sortCountries(property, sortType[property])
+        toggleSortType(property)
+        setActiveProperty(property)
+    }
 
     return (
         <div className="statistics-container">
             <div className="table-wrapper">
-            <table className="statistics-table">
+            <table>
                 <thead>
                     <tr className="table-head">
-                        <th style={{width: "50%"}} onClick={() => {sortCountries("name", sortType.name);
-                                            setSortType({...sortType, name: !sortType.name});
-                                            setActiveProperty("name")}}>Name</th>
-                        <th onClick={() => {sortCountries("population", sortType.population);
-                                            setSortType({...sortType, population: !sortType.population});
-                                            setActiveProperty("population")}}>Population</th>
-                        <th onClick={() => {sortCountries("area", sortType.area);
-                                            setSortType({...sortType, area: !sortType.area});
-                                            setActiveProperty("area")}}>Area <span>(km<sup>2</sup>)</span></th>
+                        <th style={{width: "50%"}} onClick={() => {onPropertyChange("name")}}>Name</th>
+                        <th onClick={() => {onPropertyChange("population")}}>Population</th>
+                        <th onClick={() => {onPropertyChange("area")}}>Area <span>(km<sup>2</sup>)</span></th>
                     </tr>
                 </thead>
                 <tbody>

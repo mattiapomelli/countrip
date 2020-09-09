@@ -9,7 +9,7 @@ import "leaflet/dist/leaflet.css"
 import "../css/world.css"
 import { WorldContext } from "../context/WorldContext"
 import mapStyles from "../utils/mapStyles"
-import { parameters } from "../utils/utils"
+import { parameters, formatNumber } from "../utils/utils"
 
 const markerIcon = new Icon({
     iconUrl: "/icons/markericon.svg",
@@ -56,8 +56,8 @@ const World = () => {
             items.push(
                 <div className="legend-item">
                     <i style ={{backgroundColor: colors[i]}}></i>
-                    <span>{grades[i]}
-                    {grades[i + 1] ? " - " +  grades[i + 1] : "+"}</span>
+                    <span>{formatNumber(grades[i])}
+                    {grades[i + 1] ? " - " +  formatNumber(grades[i + 1]) : "+"}</span>
                 </div>
             )
         }

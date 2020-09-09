@@ -17,7 +17,7 @@ export default ({ children }) => {
         getAllCountriesData()
     }, [])
 
-    const getCountryData = (code) => {
+    const getCountryData = (code) => {  //get data for a specific country when selected, to display in the country card
         axios.get(`https://restcountries.eu/rest/v2/alpha/${code}`)
         .then(res => {
             setSelected(res.data)
@@ -25,7 +25,7 @@ export default ({ children }) => {
         .catch(err => console.log(err))
     }
 
-    const getAllCountriesData = () => {
+    const getAllCountriesData = () => { //get basic data for all countries to display in the table
         axios.get("https://restcountries.eu/rest/v2/all?fields=name;alpha3Code;capital;region;population;latlng;area;currencies;languages;flag")
         .then(res => {
             const result = res.data.filter(item => countryCodes.includes(item.alpha3Code))  //keep only official countries, and discard non relevant ones
@@ -46,7 +46,7 @@ export default ({ children }) => {
         return result
     }
 
-    const setActiveLayer = (layer) => {
+    const setActiveLayer = (layer) => { //set active layer on the map and give it the proper style
         resetActiveLayer()
         getCountryData(layer.feature.properties.ISO_A3)
         layer.bringToFront()
@@ -55,7 +55,7 @@ export default ({ children }) => {
         activeLayer.current = layer
     }
 
-    const resetActiveLayer = () => {
+    const resetActiveLayer = () => {    //reset active layer and bring style back to normal
         setSelected(null)
         if(activeLayer.current){
             activeLayer.current.setStyle(mapStyles.nonActive)
