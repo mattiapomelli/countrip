@@ -1,6 +1,7 @@
 import React, { useContext } from "react"
 import { WorldContext } from "../context/WorldContext"
 import "../css/countrycard.css"
+import { formatNumber } from "../utils/utils"
 
 const CountryCard = () => {
     const { selected  } = useContext(WorldContext)
@@ -13,9 +14,9 @@ const CountryCard = () => {
                 <img src={selected.flag} alt="country flag"/>
                 <div>{selected.name}</div>
                 <div>Capital City: {selected.capital}</div>
-                <div>Population: {selected.population.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")}</div>  {/* puts a dot every three digits for more readability */}
+                <div>Population: {formatNumber(selected.population)}</div>  {/* puts a dot every three digits for more readability */}
                 <div>Region: {selected.region}</div>
-                <div>Area: {selected.area.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")}</div>
+                <div>Area: {selected.area ? formatNumber(selected.area) : "N.A."}</div>
                 <div>
                     Languages: 
                     {

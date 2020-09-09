@@ -1,4 +1,4 @@
-import { getPopulationColor, getAreaColor } from "./colors"
+import { getColor } from "./utils"
 
 export default {
 
@@ -6,7 +6,7 @@ export default {
         color: "#777",
         weight: 1,
         opacity: 1,	
-        fillOpacity: 0.8,
+        fillOpacity: 1,
         fillColor: "#1793d4", 
         //dashArray: 5
     },
@@ -27,13 +27,13 @@ export default {
 
     population: (feature) => {
         return {
-            fillColor: getPopulationColor(feature.properties.population)
+            fillColor: getColor(feature.properties.population, "population")
             }
     },
 
     area: (feature) => {
         return {
-            fillColor: getAreaColor(feature.properties.area)
+            fillColor: getColor(feature.properties.area, "area")
         }
     }
 

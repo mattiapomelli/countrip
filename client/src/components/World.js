@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useContext } from "react"
+import React, { useContext } from "react"
 import { Map, GeoJSON, Marker } from "react-leaflet"
 import { Icon } from "leaflet";
 import Control from "react-leaflet-control"
@@ -9,7 +9,7 @@ import "leaflet/dist/leaflet.css"
 import "../css/world.css"
 import { WorldContext } from "../context/WorldContext"
 import mapStyles from "../utils/mapStyles"
-import { getPopulationColor } from "../utils/colors"
+import { parameters } from "../utils/utils"
 
 const markerIcon = new Icon({
     iconUrl: "/icons/markericon.svg",
@@ -18,13 +18,13 @@ const markerIcon = new Icon({
 })
 
 const World = () => {
-    const [color, setColor] = useState("#000")
-    const latestColor = useRef("")
+    //const [color, setColor] = useState("#000")
+    //const latestColor = useRef("")
     const { selected, layersRef, setActiveLayer, findCountryByCode } = useContext(WorldContext)
 
-    useEffect(() => {
-        latestColor.current = color
-    })
+    // useEffect(() => {
+    //     latestColor.current = color
+    // })
 
     const onCountryClick = (event) => {
         console.log("country")
@@ -43,23 +43,28 @@ const World = () => {
         })
     }
 
-    const renderLegend = () => {
-        let grades = [0, 1000000, 2000000, 5000000, 10000000, 20000000, 50000000, 100000000]
+    const renderLegend = (property) => {
         let items = []
 
-        for (const [index, value] of grades.entries()){
-            items.push(<div className="legend-item">
-                <i style ={{backgroundColor: getPopulationColor(value + 1)}}></i>
-                <span>{value.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")}
-                {grades[index + 1] ? " - " +  grades[index + 1].toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") : "+"}</span>
-            </div>)
+        let grades = parameters[property].grades
+        let colors = parameters[property].colors
+
+        for (let i = 0; i < grades.length; i++){
+            items.push(
+                <div className="legend-item">
+                    <i style ={{backgroundColor: colors[i]}}></i>
+                    <span>{grades[i]}
+                    {grades[i + 1] ? " - " +  grades[i + 1] : "+"}</span>
+                </div>
+            )
         }
+
         return items
     }
 
-    const changeColor = (event) => {
-        setColor(event.target.value)
-    }
+    // const changeColor = (event) => {
+    //     setColor(event.target.value)
+    // }
 
     return (
         <div className="main-container">
@@ -71,15 +76,7 @@ const World = () => {
                 }
                 <Control position="topright">
                     <div className="legend">
-                        {renderLegend()}
-
-                       {/*  <div className="legend-item"><i style={{backgroundColor: "#FED976"}}></i><span>1.000.000 - 2.000.000</span></div>
-                        <div className="legend-item"><i style={{backgroundColor: "#FEB24C"}}></i><span>2.000.000 - 5.000.000</span></div>
-                        <div className="legend-item"><i style={{backgroundColor: "#FD8D3C"}}></i><span>5.000.000 - 10.000.000</span></div>
-                        <div className="legend-item"><i style={{backgroundColor: "#FC4E2A"}}></i><span>10.000.000 - 20.000.000</span></div>
-                        <div className="legend-item"><i style={{backgroundColor: "#E31A1C"}}></i><span>20.000.000 - 50.000.000</span></div>
-                        <div className="legend-item"><i style={{backgroundColor: "#BD0026"}}></i><span>50.000.000 - 100.000.000</span></div>
-                        <div className="legend-item"><i style={{backgroundColor: "#800026"}}></i><span>100.000.000 + </span></div> */}
+                        {renderLegend("area")}
                     </div>
                 </Control>
             </Map>

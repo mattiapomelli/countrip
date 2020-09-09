@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react"
 import { WorldContext } from "../context/WorldContext"
 import "../css/statistics.css"
+import { formatNumber } from "../utils/utils"
 
 
 const Statistics = () => {
@@ -33,8 +34,8 @@ const Statistics = () => {
                             return (
                                 <tr key={index}>
                                     <td onClick={() => selectCountry(country.alpha3Code)}>{country.name}</td>
-                                    <td>{country.population}</td>
-                                    <td>{country.area}</td>
+                                    <td>{formatNumber(country.population)}</td>
+                                    <td>{country.area ? formatNumber(country.area) : "N.A."}</td>
                                 </tr>
                             )
                         })
