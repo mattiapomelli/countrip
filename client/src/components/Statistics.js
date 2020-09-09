@@ -5,7 +5,7 @@ import { formatNumber } from "../utils/utils"
 
 
 const Statistics = () => {
-    const { countries, findLayerByCode, setActiveLayer, resetActiveLayer, sortCountries } = useContext(WorldContext)
+    const { countries, findLayerByCode, setActiveLayer, resetActiveLayer, sortCountries, setActiveProperty } = useContext(WorldContext)
     const [ sortType, setSortType ] = useState({name: true, population: false, area: false})
 
     const selectCountry = (code) => {
@@ -21,11 +21,14 @@ const Statistics = () => {
                 <thead>
                     <tr className="table-head">
                         <th style={{width: "50%"}} onClick={() => {sortCountries("name", sortType.name);
-                                            setSortType({...sortType, name: !sortType.name})}}>Name</th>
+                                            setSortType({...sortType, name: !sortType.name});
+                                            setActiveProperty("name")}}>Name</th>
                         <th onClick={() => {sortCountries("population", sortType.population);
-                                            setSortType({...sortType, population: !sortType.population})}}>Population</th>
+                                            setSortType({...sortType, population: !sortType.population});
+                                            setActiveProperty("population")}}>Population</th>
                         <th onClick={() => {sortCountries("area", sortType.area);
-                                            setSortType({...sortType, area: !sortType.area})}}>Area <span>(km<sup>2</sup>)</span></th>
+                                            setSortType({...sortType, area: !sortType.area});
+                                            setActiveProperty("area")}}>Area <span>(km<sup>2</sup>)</span></th>
                     </tr>
                 </thead>
                 <tbody>

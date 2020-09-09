@@ -11,6 +11,7 @@ export default ({ children }) => {
     const layersRef = useRef()                      //ref to all layers
     const [countries, setCountries] = useState([])
     const [loaded, setLoaded] = useState(false)
+    const [activeProperty, setActiveProperty] = useState("name")  //keeps track of the currently selected property ("name", "area", "population")
 
     useEffect(() => {
         getAllCountriesData()
@@ -84,12 +85,13 @@ export default ({ children }) => {
         layersRef.current.leafletElement.setStyle(mapStyles[property])  //set the map style based on property selected for the sorting
     }
 
+
     return (    
         <div>
             { !loaded ? <h1>Loading</h1> : 
             <WorldContext.Provider
             value={{selected, layersRef, countries, setCountries, findLayerByCode, setActiveLayer, resetActiveLayer,
-                findCountryByCode, sortCountries}}>
+                findCountryByCode, sortCountries, activeProperty, setActiveProperty}}>
                 { children }
             </WorldContext.Provider>
             }

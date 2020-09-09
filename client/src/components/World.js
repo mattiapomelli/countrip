@@ -20,7 +20,7 @@ const markerIcon = new Icon({
 const World = () => {
     //const [color, setColor] = useState("#000")
     //const latestColor = useRef("")
-    const { selected, layersRef, setActiveLayer, findCountryByCode } = useContext(WorldContext)
+    const { selected, layersRef, setActiveLayer, findCountryByCode, activeProperty } = useContext(WorldContext)
 
     // useEffect(() => {
     //     latestColor.current = color
@@ -44,6 +44,9 @@ const World = () => {
     }
 
     const renderLegend = (property) => {
+        if(property === "name"){
+            return null
+        }
         let items = []
 
         let grades = parameters[property].grades
@@ -59,7 +62,7 @@ const World = () => {
             )
         }
 
-        return items
+        return (<div className="legend">{items}</div>)
     }
 
     // const changeColor = (event) => {
@@ -75,9 +78,7 @@ const World = () => {
                     selected && <Marker position={[selected.latlng[0], selected.latlng[1]]} icon={markerIcon}/>
                 }
                 <Control position="topright">
-                    <div className="legend">
-                        {renderLegend("area")}
-                    </div>
+                    {renderLegend(activeProperty)}
                 </Control>
             </Map>
   
