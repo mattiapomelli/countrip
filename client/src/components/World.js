@@ -1,4 +1,4 @@
-import React, { useContext } from "react"
+import React, { useContext, useRef, useEffect } from "react"
 import { Map, GeoJSON, Marker } from "react-leaflet"
 import { Icon } from "leaflet";
 import Control from "react-leaflet-control"
@@ -21,13 +21,13 @@ const World = () => {
     //const [color, setColor] = useState("#000")
     //const latestColor = useRef("")
     const { selected, layersRef, setActiveLayer, findCountryByCode, activeProperty } = useContext(WorldContext)
+    const mapRef = useRef()
 
     // useEffect(() => {
     //     latestColor.current = color
     // })
 
     const onCountryClick = (event) => {
-        console.log("country")
         setActiveLayer(event.target)
     }
 
@@ -65,13 +65,31 @@ const World = () => {
         return (<div className="legend">{items}</div>)
     }
 
+    useEffect(() => {       //pan to country selected when map is zoomed
+        const map = mapRef.current.leafletElement
+
+        if (selected){
+            const north = map.getBounds().getNorth()
+            const south = map.getBounds().getSouth()
+            const east = map.getBounds().getEast()
+            const west = map.getBounds().getWest()
+
+            const lat = selected.latlng[0]
+            const lng = selected.latlng[1]
+
+            if(lat > north || lat < south || lng > east || lng < west){ //miglioramento: dare un po meno margine del bordo effettivo per effettuare il pan
+                map.panTo({lat, lng})
+            } 
+        }                
+    }, [selected])
+
     // const changeColor = (event) => {
     //     setColor(event.target.value)
     // }
 
     return (
         <div className="main-container">
-            <Map zoom={2} center={[40, 0]} onclick={() => console.log("map")}>
+            <Map ref={mapRef} zoom={2} center={[40, 0]}>
                 <GeoJSON ref={layersRef} style={mapStyles.default} data={countriesCoords.features} onEachFeature={onEachCountry}/>
                 {/* <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" noWrap={true}/> */}
                 {

@@ -39,7 +39,7 @@ const Statistics = () => {
                     <table>
                         <thead>
                             <tr>
-                                <th></th>
+                                <th>  </th>
                                 <th onClick={() => {onPropertyChange("name")}}>
                                     Name
                                     {
