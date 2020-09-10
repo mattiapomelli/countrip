@@ -5,7 +5,7 @@
 
 table {
     font-family: 'Poppins', sans-serif;
-    font-size: 14px;
+    font-size: 0.8rem;
     background-color: #eeeeee;
     width: 100%;
     padding: 0px 20px;
@@ -26,7 +26,6 @@ table {
 }
 
 th {
-    border: 1px solid white;
     padding: 7px 10px;
     height: 40px;
     box-sizing: border-box;
@@ -77,3 +76,25 @@ tbody tr:nth-child(even) {
     -ms-transform: rotate(-180deg);
     -webkit-transform: rotate(-180deg);
 }
+
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #fff
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 20px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+  

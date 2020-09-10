@@ -19,6 +19,42 @@ body {
     "map stats";
     height: 100vh;
     padding-top: 10px;
+    padding-bottom: 10px;
     box-sizing: border-box;
+}
+
+@media only screen and (max-width: 1000px) {
+    .main-container {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 2fr;
+        grid-template-areas: 
+            "card stats"
+            "map map";
+    }
+
+    .table-wrapper {
+        height: 35vh;
+    }
+    .country-card {
+        height: 35vh;
+    }
+
+}
+
+@media only screen and (max-width: 700px) {
+    .main-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 2fr 1fr;
+        grid-template-areas: 
+            "card"
+            "map"
+            "stats";
+    }
+    .table-wrapper {
+        height: 35vh;
+    }
+    .country-card {
+        height: 25vh;
+    }
 }
 
