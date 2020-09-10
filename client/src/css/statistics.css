@@ -71,3 +71,9 @@ tbody tr:nth-child(even) {
     -ms-transform: rotate(180deg);
     -webkit-transform: rotate(180deg);
 }
+
+.extra-rotated {
+    transform: rotate(-180deg);
+    -ms-transform: rotate(-180deg);
+    -webkit-transform: rotate(-180deg);
+}
