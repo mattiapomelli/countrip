@@ -32,50 +32,56 @@ const Statistics = () => {
 
     return (
         <div className="statistics-container">
-            <div className="table-wrapper">
-            <table>
-                <thead className="pointer">
-                    <tr className="table-head">
-                        <th style={{width: "50%"}} onClick={() => {onPropertyChange("name")}}>
-                            Name
+            <div className="table-container">
+                <div className="table-head pointer">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th onClick={() => {onPropertyChange("name")}}>
+                                    Name
+                                    {
+                                        activeProperty === "name" ?
+                                        <img className={`sort-icon${sortType.name ? ' rotated' : ''}`} alt="arrow icon" src="/icons/arrowup.svg"/>
+                                        : <img className="sort-icon extra-rotated" alt="double arrow" src="/icons/doublearrow.svg"/>
+                                    }                      
+                                </th>
+                                <th onClick={() => {onPropertyChange("population")}}>
+                                    Population
+                                    {
+                                        activeProperty === "population" ?
+                                        <img className={`sort-icon${!sortType.population ? ' rotated' : ''}`} alt="arrow icon" src="/icons/arrowup.svg"/>
+                                        : <img className="sort-icon extra-rotated" alt="double arrow" src="/icons/doublearrow.svg"/>
+                                    }
+                                </th>
+                                <th onClick={() => {onPropertyChange("area")}}>
+                                    Area <span>(km<sup>2</sup>)</span>
+                                    {
+                                        activeProperty === "area" ?
+                                        <img className={`sort-icon${!sortType.area ? ' rotated' : ''}`} alt="arrow icon" src="/icons/arrowup.svg"/>
+                                        : <img className="sort-icon extra-rotated" alt="double arrow" src="/icons/doublearrow.svg"/>
+                                    }
+                                </th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div className="table-body">
+                    <table>
+                        <tbody>
                             {
-                                activeProperty === "name" ?
-                                <img className={`sort-icon${sortType.name ? ' rotated' : ''}`} alt="arrow icon" src="/icons/arrowup.svg"/>
-                                : <img className="sort-icon extra-rotated" alt="double arrow" src="/icons/doublearrow.svg"/>
-                            }                      
-                        </th>
-                        <th style={{width: "25%"}} onClick={() => {onPropertyChange("population")}}>
-                            Population
-                            {
-                                activeProperty === "population" ?
-                                <img className={`sort-icon${!sortType.population ? ' rotated' : ''}`} alt="arrow icon" src="/icons/arrowup.svg"/>
-                                : <img className="sort-icon extra-rotated" alt="double arrow" src="/icons/doublearrow.svg"/>
-                            }
-                        </th>
-                        <th style={{width: "25%"}} onClick={() => {onPropertyChange("area")}}>
-                            Area <span>(km<sup>2</sup>)</span>
-                            {
-                                activeProperty === "area" ?
-                                <img className={`sort-icon${!sortType.area ? ' rotated' : ''}`} alt="arrow icon" src="/icons/arrowup.svg"/>
-                                : <img className="sort-icon extra-rotated" alt="double arrow" src="/icons/doublearrow.svg"/>
-                            }
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        countries.map((country, index) => {
-                            return (
-                                <tr key={index}>
-                                    <td onClick={() => selectCountry(country.alpha3Code)} className="pointer">{country.name}</td>
-                                    <td>{formatNumber(country.population)}</td>
-                                    <td>{country.area ? formatNumber(country.area) : "N.A."}</td>
-                                </tr>
-                            )
-                        })
-                    }
-                </tbody>
-            </table>
+                                countries.map((country, index) => {
+                                    return (
+                                        <tr key={index}>
+                                            <td onClick={() => selectCountry(country.alpha3Code)} className="pointer">{country.name}</td>
+                                            <td>{formatNumber(country.population)}</td>
+                                            <td>{country.area ? formatNumber(country.area) : "N.A."}</td>
+                                        </tr>
+                                    )
+                                })
+                            }  
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     )
