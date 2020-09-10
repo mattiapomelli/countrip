@@ -41,7 +41,7 @@ const Statistics = () => {
                             {
                                 activeProperty === "name" ?
                                 <img className={`sort-icon${sortType.name ? ' rotated' : ''}`} alt="arrow icon" src="/icons/arrowup.svg"/>
-                                : null
+                                : <img className="sort-icon" alt="double arrow" src="/icons/doublearrow.svg"/>
                             }                      
                         </th>
                         <th style={{width: "25%"}} onClick={() => {onPropertyChange("population")}}>
@@ -49,7 +49,7 @@ const Statistics = () => {
                             {
                                 activeProperty === "population" ?
                                 <img className={`sort-icon${!sortType.population ? ' rotated' : ''}`} alt="arrow icon" src="/icons/arrowup.svg"/>
-                                : null
+                                : <img className="sort-icon" alt="double arrow" src="/icons/doublearrow.svg"/>
                             }
                         </th>
                         <th style={{width: "25%"}} onClick={() => {onPropertyChange("area")}}>
@@ -57,7 +57,7 @@ const Statistics = () => {
                             {
                                 activeProperty === "area" ?
                                 <img className={`sort-icon${!sortType.area ? ' rotated' : ''}`} alt="arrow icon" src="/icons/arrowup.svg"/>
-                                : null
+                                : <img className="sort-icon" alt="double arrow" src="/icons/doublearrow.svg"/>
                             }
                         </th>
                     </tr>
