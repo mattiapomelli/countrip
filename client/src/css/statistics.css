@@ -19,19 +19,24 @@ table {
 
 /* Columns */
 tr td:first-child, tr th:first-child { /* First column */
-    padding-left: 30px;
-    width: 50%;
+    padding-left: 10px;
+    width: 10%;
 }
 tr td:nth-child(2), tr th:nth-child(2) { /* Second column */
-    width: 25%;
+    width: 40%;
 }
 tr td:nth-child(3), tr th:nth-child(3) { /* Thirdd column */
+    width: 25%;
+}
+tr td:nth-child(3), tr th:nth-child(4) { /* Thirdd column */
     width: 25%;
 }
 
 /* Cells */
 th {
-    padding: 20px 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 5px;
     height: 60px;
     box-sizing: border-box;
     text-align: left;
@@ -52,7 +57,9 @@ th sup {
     /* vertical-align: top; */
 }
 td {
-    padding: 15px 10px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-right: 5px;
 }
 tbody tr:nth-child(even) {
     background-color: #fff;
@@ -68,14 +75,14 @@ tbody tr:nth-child(even) {
 }
 
 .table-body {
-    max-height: 60vh;
-    overflow: auto;
+    max-height: calc(70vh - 60px - 40px);
+    overflow: overlay;  /* other option could be auto */
     background-color: #eee;
 }
 
 /* Scrollbar */
 ::-webkit-scrollbar {   /* width */
-    width: 3px;
+    width: 5px;
 }
 ::-webkit-scrollbar-track {  /* Track */
     background: none

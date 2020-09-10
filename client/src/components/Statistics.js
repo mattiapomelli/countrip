@@ -23,6 +23,8 @@ const Statistics = () => {
     }
 
     const onPropertyChange = (property) => {        //sets the whole envinronment to display data according to the selected property
+        const tableBody = document.getElementsByClassName("table-body")[0]
+        tableBody.scrollTop = 0
         sortCountries(property, sortType[property])
         toggleSortType(property)
         if (activeProperty !== property){
@@ -37,6 +39,7 @@ const Statistics = () => {
                     <table>
                         <thead>
                             <tr>
+                                <th></th>
                                 <th onClick={() => {onPropertyChange("name")}}>
                                     Name
                                     {
@@ -72,6 +75,7 @@ const Statistics = () => {
                                 countries.map((country, index) => {
                                     return (
                                         <tr key={index}>
+                                            <td>{index + 1}.</td>
                                             <td onClick={() => selectCountry(country.alpha3Code)} className="pointer">{country.name}</td>
                                             <td>{formatNumber(country.population)}</td>
                                             <td>{country.area ? formatNumber(country.area) : "N.A."}</td>

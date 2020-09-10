@@ -2,6 +2,7 @@
     margin: 0;
     background-color: #d9ebeb;
     grid-area: map;
+    border-radius: 10px;
 }
 
 .legend {
