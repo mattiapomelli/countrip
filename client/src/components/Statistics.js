@@ -5,7 +5,7 @@ import { formatNumber } from "../utils/utils"
 
 
 const Statistics = () => {
-    const { countries, findLayerByCode, setActiveLayer, resetActiveLayer, sortCountries, setActiveProperty, activeProperty } = useContext(WorldContext)
+    const { countries, findLayerByCode, setActiveLayer, sortCountries, setActiveProperty, activeProperty } = useContext(WorldContext)
     const [ sortType, setSortType ] = useState({name: false, population: false, area: false})
 
     const selectCountry = (code) => {

@@ -48,22 +48,24 @@ export default ({ children }) => {
     }
 
     const setActiveLayer = (layer) => { //set active layer on the map and give it the proper style
-        resetActiveLayer()
-        getCountryData(layer.feature.properties.ISO_A3)
-        if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge){
-            layer.bringToFront()
+        if(!layer.active){  //in this way we don't re-fetch data and change everything if the active country is clicked
+            resetActiveLayer()
+            getCountryData(layer.feature.properties.ISO_A3)
+            if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge){
+                layer.bringToFront()
+            }
+            layer.setStyle(mapStyles.active)
+            //layer.setZIndexOffset(2000)
+            layer.active = true  //attaching active property to the layer so we can use it to handle styling
+            activeLayer.current = layer
         }
-        layer.setStyle(mapStyles.active)
-        //layer.setZIndexOffset(2000)
-        layer.feature.properties.active = true  //attaching active property to the feature so that we can use it for styling
-        activeLayer.current = layer
     }
 
     const resetActiveLayer = () => {    //reset active layer and bring style back to normal
         setSelected(null)
         if(activeLayer.current){
             activeLayer.current.setStyle(mapStyles.nonActive)
-            activeLayer.current.feature.properties.active = false
+            activeLayer.current.active = false
             activeLayer.current = null
         }
     }

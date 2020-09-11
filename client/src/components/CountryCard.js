@@ -37,7 +37,7 @@ const CountryCard = () => {
                 </div>
 
                 </>
-            ) : <h4>Select a country</h4>
+            ) : <h4>Click on a country to see more details</h4>
         }
         </div>
     )

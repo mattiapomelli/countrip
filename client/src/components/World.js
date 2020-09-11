@@ -1,6 +1,6 @@
-import React, { useContext, useRef, useEffect, useState } from "react"
+import React, { useContext, useRef, useEffect } from "react"
 import { Map, GeoJSON, Marker } from "react-leaflet"
-import L, { Icon } from "leaflet";
+import { Icon } from "leaflet";
 import Control from "react-leaflet-control"
 import CountryCard from "./CountryCard"
 import Statistics from "./Statistics"
@@ -20,7 +20,7 @@ const markerIcon = new Icon({
 const World = () => {
     //const [color, setColor] = useState("#000")
     //const latestColor = useRef("")
-    const { selected, layersRef, setActiveLayer, findCountryByCode, activeProperty, activeLayer } = useContext(WorldContext)
+    const { selected, layersRef, setActiveLayer, findCountryByCode, activeProperty, resetActiveLayer } = useContext(WorldContext)
     const mapRef = useRef()
     const prevStyle = useRef(mapStyles.default)
 
@@ -54,7 +54,7 @@ const World = () => {
     const resetHighlight = (event) => {
         //set style back to the style before going hover it
         event.target.setStyle(prevStyle.current)
-        if(event.target.feature.properties.active) {
+        if(event.target.active) {
             event.target.setStyle(mapStyles.active)
         }
         document.getElementById("country-hover-name").innerHTML = ""
@@ -93,7 +93,10 @@ const World = () => {
             )
         }
 
-        return (<div className="legend">{items}</div>)
+        return (<div className="legend">
+                {property}:
+                    {items}
+                </div>)
     }
 
     useEffect(() => {       //pan to country selected when map is zoomed
@@ -118,9 +121,16 @@ const World = () => {
     //     setColor(event.target.value)
     // }
 
+    const onMapClick = () => {
+        let isHovering = document.getElementById("country-hover-name").innerHTML    //simple trick to understand if user clicked on the map but outside every polygon
+        if(!isHovering){
+            resetActiveLayer()
+        }
+    } 
+
     return (
         <div className="main-container">
-            <Map ref={mapRef} zoom={2} center={[40, 0]}>
+            <Map ref={mapRef} zoom={2} center={[40, 0]} onClick={onMapClick}>
                 <GeoJSON ref={layersRef} style={mapStyles.default} data={countriesCoords.features} onEachFeature={onEachCountry}/>
                 {/* <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" noWrap={true}/> */}
                 {
@@ -129,7 +139,7 @@ const World = () => {
                 <Control position="topright">
                     {renderLegend(activeProperty)}
                 </Control>
-                
+
                 <div id="country-hover-name"></div>
             </Map>
   
