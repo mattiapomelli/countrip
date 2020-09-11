@@ -11,8 +11,11 @@ const CountryCard = () => {
         {   
             selected ? (
                 <>
+                <div className="country-name">
+                    {selected.name}
+                </div>
                 <img src={selected.flag} alt="country flag"/>
-                <div>{selected.name}</div>
+                
                 <div>Capital City: {selected.capital}</div>
                 <div>Population: {formatNumber(selected.population)}</div>  {/* puts a dot every three digits for more readability */}
                 <div>Region: {selected.region}</div>
@@ -37,7 +40,11 @@ const CountryCard = () => {
                 </div>
 
                 </>
-            ) : <h4>Click on a country to see more details</h4>
+            ) : (
+            <div className="empty-card-container">
+                <h4>Click on a country</h4>
+            </div>
+            )
         }
         </div>
     )

@@ -13,3 +13,17 @@
 .country-card img {
     height: 80px;
 }
+
+
+
+/* Card Empty */
+
+.empty-card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+.empty-card-container h4 {
+    color: #333;
+}

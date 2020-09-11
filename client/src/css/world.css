@@ -30,6 +30,16 @@
     font-size: 10px;
 }
 
+.legend-title {
+    text-transform: capitalize; 
+    font-family: 'Poppins', sans-serif; 
+    font-weight: 600;
+    margin-bottom: 0.5em;
+    text-align: center;
+}
+
+
+
 #country-hover-name {
     position: absolute;
     left: 50%;

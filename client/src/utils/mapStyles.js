@@ -19,13 +19,13 @@ export default {
         color: "#222",
         weight: 2,
         zIndex: 800,
-        fillOpacity: 1
+        fillOpacity: 0.95
     },
 
     nonActive: {
-        color: "#777",
+        color: "#555",
         weight: 1,
-        fillOpacity: 0.85
+        fillOpacity: 0.8
     },
 
     hover: {
