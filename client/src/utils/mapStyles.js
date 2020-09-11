@@ -17,12 +17,19 @@ export default {
 
     active: {
         color: "#222",
-        weight: 2
+        weight: 2,
+        zIndex: 800,
+        fillOpacity: 0.8
     },
 
     nonActive: {
         color: "#777",
-        weight: 1
+        weight: 1,
+        fillOpacity: 1
+    },
+
+    hover: {
+        fillOpacity: 0.8,
     },
 
     population: (feature) => {

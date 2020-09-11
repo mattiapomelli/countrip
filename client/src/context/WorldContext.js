@@ -1,5 +1,6 @@
 import React, {createContext, useState, useRef, useEffect } from 'react'
 import axios from 'axios'
+import L from "leaflet"
 import countryCodes from "../utils/countryCodes"
 import mapStyles from "../utils/mapStyles"
 
@@ -49,9 +50,12 @@ export default ({ children }) => {
     const setActiveLayer = (layer) => { //set active layer on the map and give it the proper style
         resetActiveLayer()
         getCountryData(layer.feature.properties.ISO_A3)
-        layer.bringToFront()
+        if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge){
+            layer.bringToFront()
+        }
         layer.setStyle(mapStyles.active)
-        //layer.feature.properties.active = true  //attaching active property to the feature so that we can use it for styling
+        //layer.setZIndexOffset(2000)
+        layer.feature.properties.active = true  //attaching active property to the feature so that we can use it for styling
         activeLayer.current = layer
     }
 
@@ -59,7 +63,7 @@ export default ({ children }) => {
         setSelected(null)
         if(activeLayer.current){
             activeLayer.current.setStyle(mapStyles.nonActive)
-            //activeLayer.current.feature.properties.active = false
+            activeLayer.current.feature.properties.active = false
             activeLayer.current = null
         }
     }
@@ -96,7 +100,7 @@ export default ({ children }) => {
             { !loaded ? <h1>Loading</h1> : 
             <WorldContext.Provider
             value={{selected, layersRef, countries, setCountries, findLayerByCode, setActiveLayer, resetActiveLayer,
-                findCountryByCode, sortCountries, activeProperty, setActiveProperty}}>
+                findCountryByCode, sortCountries, activeProperty, setActiveProperty, activeLayer}}>
                 { children }
             </WorldContext.Provider>
             }

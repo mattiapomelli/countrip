@@ -10,7 +10,7 @@ const Statistics = () => {
 
     const selectCountry = (code) => {
         const layer = findLayerByCode(code)
-        resetActiveLayer()
+        //resetActiveLayer()
         setActiveLayer(layer)
     }
     
