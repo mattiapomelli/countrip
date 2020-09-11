@@ -3,10 +3,10 @@ import { getColor } from "./utils"
 export default {
 
     default: {
-        color: "#777",
+        color: "#555",
         weight: 1,
         opacity: 1,	
-        fillOpacity: 1,
+        fillOpacity: 0.8,
         fillColor: "#1793d4", 
         //dashArray: 5
     },
@@ -19,17 +19,17 @@ export default {
         color: "#222",
         weight: 2,
         zIndex: 800,
-        fillOpacity: 0.8
+        fillOpacity: 1
     },
 
     nonActive: {
         color: "#777",
         weight: 1,
-        fillOpacity: 1
+        fillOpacity: 0.85
     },
 
     hover: {
-        fillOpacity: 0.8,
+        fillOpacity: 1,
     },
 
     population: (feature) => {

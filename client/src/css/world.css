@@ -6,7 +6,7 @@
 }
 
 .legend {
-    background-color: #fff;
+    background-color: rgb(255, 255, 255);
     border-radius: 10px;
     padding: 10px;
 }
@@ -18,11 +18,12 @@
 }
 
 .legend-item i {
-    background-color: brown;
     height: 15px;
     width: 15px;
     float: left;
     margin-right: 5px;
+    border: 1px solid #555;
+    box-sizing: border-box;
 }
 
 .legend-item span {

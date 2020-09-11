@@ -86,7 +86,7 @@ const World = () => {
         for (let i = 0; i < grades.length; i++){
             items.push(
                 <div className="legend-item" key={i}>
-                    <i style ={{backgroundColor: colors[i]}}></i>
+                    <i style ={{backgroundColor: colors[i], opacity: mapStyles.default.fillOpacity}}></i>
                     <span>{formatNumber(grades[i])}
                     {grades[i + 1] ? " - " +  formatNumber(grades[i + 1]) : "+"}</span>
                 </div>

@@ -124,7 +124,8 @@ tbody tr:nth-child(even) {
 
 .search-container {
     height: 4vh;
-    padding-bottom: 10px;
+    margin-bottom: 10px;
+    position: relative;
 }
 
 .search-container input {
@@ -142,4 +143,14 @@ tbody tr:nth-child(even) {
 
 .active-tab {
     background-color: rgba(255, 99, 71, 0.315) !important;
+}
+
+.search-container button {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 20px;
+    outline: none;
+    border: 1px solid #666
 }
