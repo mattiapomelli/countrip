@@ -75,7 +75,7 @@ tbody tr:nth-child(even) {
 }
 
 .table-body {
-    max-height: calc(70vh - 60px - 40px);
+    max-height: calc(65vh - 60px - 40px);
     overflow: overlay;  /* other option could be auto */
     background-color: #eee;
 }
@@ -119,4 +119,27 @@ tbody tr:nth-child(even) {
     -ms-transform: rotate(-180deg);
     -webkit-transform: rotate(-180deg);
 }
-  
+
+/* Search Bar */
+
+.search-container {
+    height: 4vh;
+    padding-bottom: 10px;
+}
+
+.search-container input {
+    width: 100%;
+    margin: 0;
+    padding: 5px 15px;
+    box-sizing: border-box;
+    height: 100%;
+    background-color: #eee;
+    border-radius: 10px;
+    border: 1px solid #666;
+    outline: none;
+    font-family: 'Poppins', sans-serif;
+}
+
+.active-tab {
+    background-color: rgba(255, 99, 71, 0.315) !important;
+}

@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react"
 import { WorldContext } from "../context/WorldContext"
+import Searchbar from "./Searchbar"
 import "../css/statistics.css"
 import { formatNumber } from "../utils/utils"
 
@@ -34,6 +35,7 @@ const Statistics = () => {
 
     return (
         <div className="statistics-container">
+            <Searchbar />
             <div className="table-container">
                 <div className="table-head pointer">
                     <table>
@@ -70,7 +72,7 @@ const Statistics = () => {
                 </div>
                 <div className="table-body">
                     <table>
-                        <tbody>
+                        <tbody id ="countries-list">
                             {
                                 countries.map((country, index) => {
                                     return (

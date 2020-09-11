@@ -36,7 +36,7 @@ body {
         max-height: 35vh;
     }
     .table-body {
-        max-height: calc(35vh - 60px);
+        max-height: calc(30vh - 60px);
     }
     .country-card {
         height: 35vh;
@@ -52,9 +52,6 @@ body {
             "card"
             "map"
             "stats";
-    }
-    .table-body {
-        max-height: 35vh;
     }
     .country-card {
         height: 25vh;
