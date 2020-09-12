@@ -1,6 +1,7 @@
 .leaflet-container {
     margin: 0;
-    background-color: #d9ebeb;
+    /* background-color: #d9ebeb; */
+    background-color: #d9ddea;
     grid-area: map;
     border-radius: 10px;
 }
@@ -46,7 +47,7 @@
     bottom: 3%;
     transform: translateX(-50%);
     z-index: 800;
-    background-color: #d9ebebb7;
+    background-color: #d9ddeab7;
     padding: 5px 10px;
     border-radius: 20px;
     font-family: 'Poppins', sans-serif;
@@ -54,4 +55,24 @@
 
 #country-hover-name:empty {
     display: none;
+}
+
+/* Zoom Control */
+
+.leaflet-control-zoom {
+    border: 1px solid #777 !important;
+    border-radius: 40px;
+    overflow: hidden;
+}
+
+.leaflet-control-zoom a {
+    background-color: #e7eaf1 !important;
+    color: #333 !important;
+}
+.leaflet-control-zoom a:hover {
+    background-color: #cad1e0 !important;
+}
+
+.leaflet-control-zoom-in {
+    border-bottom: 1px solid #777 !important;
 }

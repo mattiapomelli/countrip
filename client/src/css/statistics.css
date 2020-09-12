@@ -131,7 +131,7 @@ tbody tr:nth-child(even) {
 .search-container input {
     width: 100%;
     margin: 0;
-    padding: 5px 15px;
+    padding: 5px 40px;
     box-sizing: border-box;
     height: 100%;
     background-color: #eee;
@@ -145,12 +145,22 @@ tbody tr:nth-child(even) {
     background-color: rgba(255, 99, 71, 0.315) !important;
 }
 
-.search-container button {
+.cancel-icon {
     position: absolute;
-    right: 15px;
+    right: 10px;
     top: 50%;
     transform: translateY(-50%);
-    border-radius: 20px;
     outline: none;
-    border: 1px solid #aaa
+    border: none
+}
+.search-container span {
+    font-size: 1.4em;
+    color: #333;
+}
+
+.search-icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 10px;
 }

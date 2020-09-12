@@ -42,8 +42,9 @@ const Searchbar = () => {
 
     return (
         <div className="search-container">
-            <input type="search" value={search} onChange={e => setSearch(e.target.value)} placeholder="Search.."/>
-            <button onClick={() => setSearch('')}>X</button>
+            <span className="material-icons search-icon">search</span>
+            <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search.."/>
+            <span className="material-icons cancel-icon" onClick={() => setSearch('')}>clear</span>
         </div>
     )
 }
