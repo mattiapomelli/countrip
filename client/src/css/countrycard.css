@@ -4,7 +4,7 @@
     background: #eee;
     height: 30vh;
     box-sizing: border-box;
-    font-size: 14px;
+    font-size: 0.8rem;
     overflow: auto;
     border-radius: 10px;
 }
@@ -40,11 +40,11 @@
 
 
 .country-name {
-    font-size: 1.1em;
+    font-size: 1.3em;
     font-weight: 700;
 }
 .country-info {
-    font-size: 0.9em;
+    font-size: 1em;
 }
 
 .bottom-large-container {
@@ -65,11 +65,11 @@
     text-align: center;
 }
 .data-title {
-    font-size: 1em;
+    font-size: 1.1em;
     font-weight: 600;
 }
 .data-content {
-    font-size: 0.8em;
+    font-size: 0.9em;
 }
 
 /* Card Empty */

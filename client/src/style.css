@@ -1,6 +1,6 @@
-/* :root {
-    filter: hue-rotate(45deg)
-} */
+:root {
+    --table-headers-height: 60px
+}
 
 body {
     /* background: rgb(197, 221, 221); */
@@ -28,7 +28,13 @@ body {
     box-sizing: border-box;
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 1300px) {
+    :root {
+        font-size: 15px;
+    }
+}
+
+@media only screen and (max-width: 1150px) {
     .main-container {
         grid-template-columns: 1fr 1fr;
         grid-template-rows: 1fr 2fr;
