@@ -1,5 +1,7 @@
 :root {
-    --table-headers-height: 60px
+    --table-headers-height: 60px;
+    --grid-gap-size: 10px;
+    --cell-vertical-padding: 15px
 }
 
 body {
@@ -16,11 +18,12 @@ body {
 .main-container {
     display: grid;
     grid-template-columns: 2fr 1fr;
-    grid-template-rows: min-content min-content;
-    grid-column-gap: 10px;
-    grid-row-gap: 10px;
+    grid-template-rows: min-content min-content min-content;
+    grid-column-gap: var(--grid-gap-size);
+    grid-row-gap: var(--grid-gap-size);
     grid-template-areas: 
     "map card"
+    "map search"
     "map stats";
     height: 100vh;
     padding-top: 10px;
@@ -35,33 +38,37 @@ body {
 }
 
 @media only screen and (max-width: 1150px) {
+    :root {
+        --table-headers-height: 50px;
+        --cell-vertical-padding: 10px;
+    }
+
     .main-container {
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr 2fr;
+        grid-template-columns: 2fr 3fr;
+        grid-template-rows: min-content min-content 1fr;
         grid-template-areas: 
+            "search stats"
             "card stats"
             "map map";
     }
 
-    .statistics-container {
-        max-height: 35vh;
-    }
     .table-body {
-        max-height: calc(30vh - 60px);
-    }
-    .country-card {
-        height: 35vh;
+        max-height: calc(34vh - var(--table-headers-height) + var(--grid-gap-size));
     }
 
 }
 
 @media only screen and (max-width: 700px) {
+    :root {
+        --table-headers-height: 40px
+    }
     .main-container {
         grid-template-columns: 1fr;
-        grid-template-rows: 1fr 2fr 1fr;
+        grid-template-rows: min-content 1fr min-content min-content;
         grid-template-areas: 
             "card"
             "map"
+            "search"
             "stats";
     }
     .country-card {

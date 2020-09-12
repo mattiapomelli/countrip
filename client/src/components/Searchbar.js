@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState, useRef } from "react"
 import { WorldContext } from "../context/WorldContext"
+import "../css/searchbar.css"
 
 const Searchbar = () => {
     const { countries } = useContext(WorldContext)
