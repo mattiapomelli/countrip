@@ -1,11 +1,18 @@
 import React from 'react';
 import World from './components/World'
+import CountryCard from './components/CountryCard'
+import Statistics from './components/Statistics'
 import "./style.css"
 
 function App() {
   return (
     <div className="App">
-      <World />
+      <div className="main-container">
+        <World />
+        <CountryCard />
+        {/* <input type="color" onChange={changeColor}/> */}
+        <Statistics />
+      </div>
     </div>
   );
 }
