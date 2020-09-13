@@ -6,6 +6,8 @@
     border-radius: 10px;
 }
 
+/* Legend */
+
 .legend {
     background-color: rgb(255, 255, 255);
     border-radius: 10px;
@@ -15,12 +17,12 @@
 .legend-item {
     padding: 0;
     margin: 0;
-    height: 15px;
+    height: 1rem;
 }
 
 .legend-item i {
-    height: 15px;
-    width: 15px;
+    height: 1rem;
+    width: 1rem;
     float: left;
     margin-right: 5px;
     border: 1px solid #555;
@@ -28,7 +30,7 @@
 }
 
 .legend-item span {
-    font-size: 10px;
+    font-size: 0.67rem;
 }
 
 .legend-title {

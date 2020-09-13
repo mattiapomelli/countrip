@@ -23,7 +23,7 @@ const CountryCard = () => {
                     </div>
                 </div>
 
-                <div className="bottom-large-container">
+                {/* <div className="bottom-large-container">
                     <div className="bottom-container">
                         <div className="country-data">
                             <div className="data-title">Region</div>
@@ -62,6 +62,45 @@ const CountryCard = () => {
                                     selected.timezones.map((timezone, index) => { return (<span key={index}> {timezone.substring(3)}</span>)})
                                 }
                             </div>
+                        </div>
+                    </div>
+                </div> */}
+
+                <div className="card-info">
+                    <div className="info-row">
+                        <div className="info-title">Region</div>
+                        <div className="info-content"> {selected.region}</div>
+                    </div>
+                    <div className="info-row">
+                        <div className="info-title">Population</div>
+                        <div className="info-content"> {formatNumber(selected.population)}</div>
+                    </div>
+                    <div className="info-row">
+                        <div className="info-title">Area</div>
+                        <div className="info-content"> {selected.area ? formatNumber(selected.area) : "N.A."}</div>
+                    </div>
+                    <div className="info-row">
+                        <div className="info-title">Languages</div>
+                        <div className="info-content">
+                            {
+                                selected.languages.map((language, index) => { return (<span key={index}> {language.name}</span>)})
+                            }
+                        </div>
+                    </div>
+                    <div className="info-row">
+                        <div className="info-title">Currencies</div>
+                        <div className="info-content">
+                            {
+                                selected.currencies.map((currency, index) => { return (<span key={index}> {currency.name}</span>)})
+                            }
+                        </div>
+                    </div>
+                    <div className="info-row">
+                        <div className="info-title">Timezones</div>
+                        <div className="info-content">
+                            {
+                                selected.timezones.map((timezone, index) => { return (<span key={index}> {timezone.substring(3)}</span>)})
+                            }
                         </div>
                     </div>
                 </div>

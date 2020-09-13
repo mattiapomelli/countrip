@@ -8,6 +8,7 @@ body {
     /* background: rgb(197, 221, 221); */
     background-color: #c4cbdd;
     margin: 0;
+    height: 100%;
 }
 
 .App {
@@ -17,7 +18,7 @@ body {
 
 .main-container {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 1fr 35%;
     grid-template-rows: min-content min-content min-content;
     grid-column-gap: var(--grid-gap-size);
     grid-row-gap: var(--grid-gap-size);
@@ -30,6 +31,23 @@ body {
     padding-bottom: 10px;
     box-sizing: border-box;
 }
+
+/* Loading screen */
+
+.loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.loading-container h1 {
+    margin: 0;
+    margin-bottom: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+}
+
+/* Media Queries */
 
 @media only screen and (max-width: 1300px) {
     :root {
@@ -58,9 +76,16 @@ body {
 
 }
 
+@media only screen and (max-width: 1000px) {
+    .main-container {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
 @media only screen and (max-width: 700px) {
     :root {
-        --table-headers-height: 40px
+        --table-headers-height: 40px;
+        font-size: 14px;
     }
     .main-container {
         grid-template-columns: 1fr;
@@ -71,8 +96,11 @@ body {
             "search"
             "stats";
     }
-    .country-card {
-        height: 25vh;
+    .search-container {
+        height: 3.5vh;
+    }
+    .table-body {
+        max-height: calc(28vh - var(--table-headers-height) + var(--grid-gap-size));
     }
 }
 

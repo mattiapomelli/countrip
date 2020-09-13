@@ -27,7 +27,7 @@ const World = () => {
         //Map Setup
 		const map = mapRef.current.leafletElement
 
-        map.setMinZoom(1)
+        map.setMinZoom(0)
         map.setMaxZoom(14)
 		// let southWest = L.latLng(-85, -300),
 		// northEast = L.latLng(85, 300);

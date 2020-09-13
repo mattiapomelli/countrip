@@ -13,6 +13,7 @@ export default ({ children }) => {
     const [countries, setCountries] = useState([])
     const [loaded, setLoaded] = useState(false)
     const [activeProperty, setActiveProperty] = useState("name")  //keeps track of the currently selected property ("name", "area", "population")
+    const [average, setAverage] = useState({population: 0, area: 0})
 
     useEffect(() => {
         getAllCountriesData()
@@ -29,8 +30,19 @@ export default ({ children }) => {
     const getAllCountriesData = () => { //get basic data for all countries to display in the table
         axios.get("https://restcountries.eu/rest/v2/all?fields=name;alpha3Code;population;area;")
         .then(res => {
-            const result = res.data.filter(item => countryCodes.includes(item.alpha3Code))  //keep only official countries, and discard non relevant ones
-            result.sort(function(a, b){             //sort results alphabetically
+            /* keep only official countries, and discard non relevant ones */
+            const result = res.data.filter(item => countryCodes.includes(item.alpha3Code))  
+            
+            /* Calculate average */
+            let sum = {population: 0, area: 0.0}
+            for (let i = 0; i < result.length; i ++) {
+                sum.population += result[i].population
+                sum.area += result[i].area ? result[i].area : 0
+            }
+            setAverage({population: Math.ceil(sum.population / result.length), area: Math.ceil(sum.area / result.length)})
+
+            /* Sort alphabetically */
+            result.sort(function(a, b){            
                 if(a.name < b.name) { return -1; }
                 if(a.name > b.name) { return 1; }
                 return 0;
@@ -99,10 +111,10 @@ export default ({ children }) => {
 
     return (    
         <div>
-            { !loaded ? <h1>Loading</h1> : 
+            { !loaded ? <div className="loading-container"><h1>Loading...</h1></div> : 
             <WorldContext.Provider
             value={{selected, layersRef, countries, setCountries, findLayerByCode, setActiveLayer, resetActiveLayer,
-                findCountryByCode, sortCountries, activeProperty, setActiveProperty, activeLayer}}>
+                findCountryByCode, sortCountries, activeProperty, setActiveProperty, activeLayer, average}}>
                 { children }
             </WorldContext.Provider>
             }

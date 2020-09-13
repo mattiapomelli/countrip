@@ -5,7 +5,7 @@
     height: 30vh;
     box-sizing: border-box;
     font-size: 0.8rem;
-    overflow: auto;
+    overflow: hidden;
     border-radius: 10px;
 }
 
@@ -82,4 +82,38 @@
 }
 .empty-card-container h4 {
     color: #333;
+}
+
+
+
+/*  */
+.card-info {
+    padding: 0px 0;
+    height: 70%;
+    box-sizing: border-box;
+}
+
+.info-row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height: calc(100% / 6);
+}
+.info-row:nth-child(odd){
+    background-color: white;
+}
+
+.info-title {
+    width: 40%;
+    padding-left: 10%;
+    box-sizing: border-box;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+.info-content {
+    width: 60%;
+    font-size: 0.7rem;
+    font-weight: 400;
+    padding-left: 15px;
+    box-sizing: border-box;
 }
