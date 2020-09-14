@@ -28,7 +28,7 @@ export default ({ children }) => {
     }
 
     const getAllCountriesData = () => { //get basic data for all countries to display in the table
-        axios.get("https://restcountries.eu/rest/v2/all?fields=name;alpha3Code;population;area;")
+        axios.get("https://restcountries.eu/rest/v2/all?fields=name;alpha3Code;population;area;gini;")
         .then(res => {
             /* keep only official countries, and discard non relevant ones */
             const result = res.data.filter(item => countryCodes.includes(item.alpha3Code))  
@@ -36,6 +36,7 @@ export default ({ children }) => {
             /* Calculate average */
             let sum = {population: 0, area: 0.0}
             for (let i = 0; i < result.length; i ++) {
+                console.log(result[i].gini)
                 sum.population += result[i].population
                 sum.area += result[i].area ? result[i].area : 0
             }
