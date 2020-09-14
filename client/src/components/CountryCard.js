@@ -1,16 +1,34 @@
-import React, { useContext } from "react"
+import React, { useContext, useEffect } from "react"
 import { WorldContext } from "../context/WorldContext"
 import "../css/countrycard.css"
 import { formatNumber } from "../utils/utils"
 
 const CountryCard = () => {
-    const { selected  } = useContext(WorldContext)
+    const { selected, average } = useContext(WorldContext)
+
+    useEffect(() => {   
+
+        calculateWidth("population")
+        calculateWidth("area")
+
+    })
+
+    const calculateWidth = (property) => {
+        const selectedDiv = document.getElementById(`selected-${property}`)
+        const averageDiv = document.getElementById(`average-${property}`) 
+
+        if(selected[property] > average[property]){
+            selectedDiv.style.width = "100%"
+            averageDiv.style.width = `${(average[property]*100) / selected[property]}%`
+        } else {
+            averageDiv.style.width = "100%"
+            selectedDiv.style.width = `${(selected[property]*100) / average[property]}%`
+        }
+
+    }
 
     return (
-        <div className="country-card">
-        {   
-            selected ? (
-                <>
+            <>
                 <div className="top-container">
                     <div className="left-container">
                         <img src={selected.flag} alt="country flag"/>
@@ -19,100 +37,50 @@ const CountryCard = () => {
                         <div className="main-info">
                             <div className="country-name">{selected.name}</div>
                             <div className="country-info">Capital City: {selected.capital}</div>
+                            <div className="country-info">Region: {selected.region}</div>
                         </div>
                     </div>
                 </div>
 
-                {/* <div className="bottom-large-container">
-                    <div className="bottom-container">
-                        <div className="country-data">
-                            <div className="data-title">Region</div>
-                            <div className="data-content"> {selected.region} </div>
-                        </div>
-                        <div className="country-data">
-                            <div className="data-title">Population</div>
-                            <div className="data-content"> {formatNumber(selected.population)} </div>
-                        </div>
-                        <div className="country-data">
-                            <div className="data-title">Area</div>
-                            <div className="data-content"> {selected.area ? formatNumber(selected.area) : "N.A."} </div>
-                        </div>
-                    </div>
-                    <div className="bottom-container">
-                        <div className="country-data">
-                            <div className="data-title">Languages</div>
-                            <div className="data-content">
-                                {
-                                    selected.languages.map((language, index) => { return (<span key={index}> {language.name}</span>)})
-                                }
-                            </div>
-                        </div>
-                        <div className="country-data">
-                            <div className="data-title">Currencies</div>
-                            <div className="data-content">
-                                {
-                                    selected.currencies.map((currency, index) => { return (<span key={index}> {currency.name}</span>)})
-                                }
-                            </div>
-                        </div>
-                        <div className="country-data">
-                            <div className="data-title">Timezones (UTC)</div>
-                            <div className="data-content">
-                                {
-                                    selected.timezones.map((timezone, index) => { return (<span key={index}> {timezone.substring(3)}</span>)})
-                                }
-                            </div>
-                        </div>
-                    </div>
-                </div> */}
+                <div className="container">
+                    <i style={{backgroundColor:"#c4c4c4"}}></i><span>Average</span>
+                    <i style={{backgroundColor:"#6671DA"}}></i><span>{selected.name}</span>
+                </div>
 
-                <div className="card-info">
-                    <div className="info-row">
-                        <div className="info-title">Region</div>
-                        <div className="info-content"> {selected.region}</div>
+                <div className="upper-container">
+                    <div className="data-item column-1">
+                        <h5>Population</h5>
+                        <h1>{formatNumber(selected.population)}</h1>
+                        <div className="country-line" id="selected-population"></div>
+                        <div className="average-line" id="average-population"></div>
                     </div>
-                    <div className="info-row">
-                        <div className="info-title">Population</div>
-                        <div className="info-content"> {formatNumber(selected.population)}</div>
+                    <div className="data-item column-2">
+                        <h5>Area (km2)</h5>
+                        <h1>{selected.area ? formatNumber(selected.area) : "N.A."}</h1>
+                        <div className="country-line" id="selected-area"></div>
+                        <div className="average-line" id="average-area"></div>
                     </div>
-                    <div className="info-row">
-                        <div className="info-title">Area</div>
-                        <div className="info-content"> {selected.area ? formatNumber(selected.area) : "N.A."}</div>
-                    </div>
-                    <div className="info-row">
-                        <div className="info-title">Languages</div>
-                        <div className="info-content">
+                </div>
+
+                <div className="upper-container">
+                    <div className="data-item column-1">
+                        <h5>Languages</h5>
+                        <h4>
                             {
                                 selected.languages.map((language, index) => { return (<span key={index}> {language.name}</span>)})
                             }
-                        </div>
+                        </h4>
                     </div>
-                    <div className="info-row">
-                        <div className="info-title">Currencies</div>
-                        <div className="info-content">
+                    <div className="data-item column-2">
+                        <h5>Currencies</h5>
+                        <h4>
                             {
                                 selected.currencies.map((currency, index) => { return (<span key={index}> {currency.name}</span>)})
                             }
-                        </div>
-                    </div>
-                    <div className="info-row">
-                        <div className="info-title">Timezones</div>
-                        <div className="info-content">
-                            {
-                                selected.timezones.map((timezone, index) => { return (<span key={index}> {timezone.substring(3)}</span>)})
-                            }
-                        </div>
+                        </h4>
                     </div>
                 </div>
-
-                </>
-            ) : (
-            <div className="empty-card-container">
-                <h4>Click on a country</h4>
-            </div>
-            )
-        }
-        </div>
+        </>
     )
 }
 
