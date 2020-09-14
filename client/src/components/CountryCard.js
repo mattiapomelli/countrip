@@ -10,6 +10,8 @@ const CountryCard = () => {
 
         calculateWidth("population")
         calculateWidth("area")
+        calculateWidth("density")
+        calculateWidth("gini")
 
     })
 
@@ -64,6 +66,21 @@ const CountryCard = () => {
 
             <div className="data-row flex-container">
                 <div className="data-item column-1">
+                    <h5>Density (P/km2)</h5>
+                    <h1>{selected.density ? formatNumber(selected.density) : "N.A."}</h1>
+                    <div className="country-line" id="selected-density"></div>
+                    <div className="average-line" id="average-density"></div>
+                </div>
+                <div className="data-item column-2">
+                    <h5>Gini</h5>
+                    <h1>{selected.gini ? selected.gini : "N.A."}</h1>
+                    <div className="country-line" id="selected-gini"></div>
+                    <div className="average-line" id="average-gini"></div>
+                </div>
+            </div>
+
+            {/* <div className="data-row flex-container">
+                <div className="data-item column-1">
                     <h5>Languages</h5>
                     <h4>
                         {
@@ -79,7 +96,7 @@ const CountryCard = () => {
                         }
                     </h4>
                 </div>
-            </div>
+            </div> */}
         </>
     )
 }

@@ -22,7 +22,9 @@ export default ({ children }) => {
     const getCountryData = (code) => {  //get data for a specific country when selected, to display in the country card
         axios.get(`https://restcountries.eu/rest/v2/alpha/${code}`)
         .then(res => {
-            setSelected(res.data)
+            
+            let density = res.data.area ? Math.ceil(res.data.population / res.data.area) : null
+            setSelected({...res.data, density})
         })
         .catch(err => console.log(err))
     }
@@ -34,13 +36,23 @@ export default ({ children }) => {
             const result = res.data.filter(item => countryCodes.includes(item.alpha3Code))  
             
             /* Calculate average */
-            let sum = {population: 0, area: 0.0}
+            let sum = {population: 0, area: 0.0, density: 0.0, gini: 0.0}
+            let giniCount = 0   //keep track of gini count because not every country has one
             for (let i = 0; i < result.length; i ++) {
-                console.log(result[i].gini)
                 sum.population += result[i].population
                 sum.area += result[i].area ? result[i].area : 0
+                sum.density += result[i].area ? result[i].population / result[i].area : 0
+                if(result[i].gini){
+                    sum.gini += result[i].gini
+                    giniCount++
+                }
             }
-            setAverage({population: Math.ceil(sum.population / result.length), area: Math.ceil(sum.area / result.length)})
+            setAverage({
+                population: Math.ceil(sum.population / result.length),
+                area: Math.ceil(sum.area / result.length),
+                density: Math.ceil(sum.density / result.length),
+                gini: sum.gini / giniCount
+            })
 
             /* Sort alphabetically */
             result.sort(function(a, b){            
