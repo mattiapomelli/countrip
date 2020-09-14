@@ -67,7 +67,6 @@
 /* ---- */
 
 .card-legend {
-    width: 75%;
     margin: auto;
     padding: 10px 0;
 }
@@ -90,7 +89,6 @@
 
 
 .data-row {
-    width: 75%;
     margin: auto;
     padding: 10px 0;
     justify-content: center;
@@ -141,4 +139,85 @@
     height: 5px;
     background-color: #6671DA;
     min-width: 1px;
+}
+
+
+/* SLIDER */
+
+.card-body {
+    justify-content: center;
+    align-items: center;
+    height: 70%;
+}
+
+#slider {
+    margin: 0 auto;
+    width: 90%;
+    height: 100%;
+}
+
+#overflow {
+    width: 100%;
+    height: 90%;
+    overflow: hidden;
+}
+
+#inner {
+    transition: margin-left 800ms cubic-bezier(0.770, 0.000, 0.175, 1.000);     /* sliding animation */
+    width: 300%;    /* 100*number of slides */
+    height: 100%;
+}
+.slide {
+    width: calc(100% / 3);     /* 100/number of slides */
+    float:left;
+    height: 100%;
+}
+.slide-content {
+    width: 80%;
+    margin: auto;
+}
+
+
+/* Slide Arrows */
+
+.slide-arrow {
+    width: 5%;
+    text-align: center;
+    border: none;
+    background: none;
+    outline: none;
+    cursor: pointer;
+}
+.slide-arrow:disabled {
+    cursor: auto;
+}
+.slide-arrow img {
+    width: 8px;
+    opacity: 1;
+}
+.slide-arrow:disabled img {
+    opacity: 0.4;
+}
+
+/* Bullets */
+
+.bullets {
+    justify-content: center;
+    height: 10%;
+    align-items: center;
+}
+
+.bullets i {
+    width: 0.5rem;
+    height: 0.5rem;
+    background-color: #3D3D3D;
+    opacity: 0.4;
+    margin: 0 10px;
+    border-radius: 100%;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+.bullet-active {
+    opacity: 1 !important;
+    transition: opacity 0.5s;
 }
