@@ -1,7 +1,7 @@
 .leaflet-container {
     margin: 0;
     /* background-color: #d9ebeb; */
-    background-color: #d9ddea;
+    background: var(--map-background);
     grid-area: map;
     border-radius: 10px;
 }

@@ -1,12 +1,11 @@
 :root {
-    --table-headers-height: 60px;
+    --table-headers-height: 50px;
     --grid-gap-size: 10px;
-    --cell-vertical-padding: 15px
+    --cell-vertical-padding: 12px;
 }
 
 body {
-    /* background: rgb(197, 221, 221); */
-    background-color: #c4cbdd;
+    background-color: var(--background-color);
     margin: 0;
     height: 100%;
 }
@@ -103,4 +102,6 @@ body {
         max-height: calc(28vh - var(--table-headers-height) + var(--grid-gap-size));
     }
 }
+
+
 

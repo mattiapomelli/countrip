@@ -59,6 +59,7 @@ td {
     padding-bottom: var(--cell-vertical-padding);
     padding-right: 5px;
     font-size: 0.8rem;
+    color: var(--text-color);
 }
 tbody tr:nth-child(even) {
     background-color: #fff;

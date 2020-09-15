@@ -1,0 +1,23 @@
+/* Light mode (default) */
+:root {
+    --background-color: #c4cbdd;
+    --map-background: #d9ddea;
+    --text-color: #000;
+    
+}
+
+/* Dark mode */
+:root[data-theme='dark'] {
+    --background-color: #2D3446;
+    --map-background: #1E222F;
+    --text-color: #fff
+}
+
+/* Theme change transition */
+html.transition,
+html.transition *,
+html.transition *:before,
+html.transition *:after {
+    transition: background-color 500ms ease-in-out, color 500ms ease-in-out !important;
+    transition-delay: 0 !important;
+}
