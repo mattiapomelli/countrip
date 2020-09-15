@@ -28,10 +28,6 @@ export default {
         fillOpacity: 0.8
     },
 
-    hover: {
-        fillOpacity: 1,
-    },
-
     population: (feature) => {
         return {
             fillColor: getColor(feature.properties.population, "population")

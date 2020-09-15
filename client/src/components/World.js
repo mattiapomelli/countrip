@@ -5,6 +5,7 @@ import Control from "react-leaflet-control"
 import countriesCoords from "../data/countriesSimplified10.json"
 import "leaflet/dist/leaflet.css"
 import "../css/world.css"
+import "../css/map.css"
 import { WorldContext } from "../context/WorldContext"
 import mapStyles from "../utils/mapStyles"
 import { parameters, formatNumber } from "../utils/utils"
@@ -32,10 +33,12 @@ const World = () => {
 		// let southWest = L.latLng(-85, -300),
 		// northEast = L.latLng(85, 300);
 		// let bounds = L.latLngBounds(southWest, northEast);
-		// map.setMaxBounds(bounds)
+        // map.setMaxBounds(bounds)
     })
 
     const onCountryClick = (event) => {
+        let element = event.target.getElement()
+        element.classList.add('active')
         setActiveLayer(event.target)
     }
 
@@ -53,16 +56,19 @@ const World = () => {
         //get current style of layer and store it in prevStyle.current
         prevStyle.current = { color: layer.options.color, fillColor: layer.options.fillColor, fillOpacity: layer.options.fillOpacity }
 
+        let element = layer.getElement()
+        element.style.fill = lightenColor(layer.options.fillColor, -15)
 
         //set hover style
-        layer.setStyle({
-            fillColor: lightenColor(layer.options.fillColor, -15)
-        })
+        // layer.setStyle({
+        //     fillColor: lightenColor(layer.options.fillColor, -15)
+        // })
         document.getElementById("country-hover-name").innerHTML = layer.feature.properties.name
     }
 
     const resetHighlight = (event) => {
         //set style back to the style before going hover it
+        event.target.getElement().style.fill = prevStyle.current.fillColor
         event.target.setStyle(prevStyle.current)
         if(event.target.active) {
             event.target.setStyle(mapStyles.active)
@@ -140,7 +146,7 @@ const World = () => {
 
     return (
             <Map ref={mapRef} zoom={2} center={[40, 0]} onClick={onMapClick}>
-                <GeoJSON ref={layersRef} style={mapStyles.default} data={countriesCoords.features} onEachFeature={onEachCountry}/>
+                <GeoJSON ref={layersRef}  style={mapStyles.default} data={countriesCoords.features} onEachFeature={onEachCountry}/>
                 {/* <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" noWrap={true}/> */}
                 {
                     selected && <Marker position={[selected.latlng[0], selected.latlng[1]]} icon={markerIcon}/>

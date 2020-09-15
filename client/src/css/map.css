@@ -1,0 +1,18 @@
+.leaflet-container svg g path {
+    stroke: #555;
+    stroke-width: 1;
+    stroke-opacity: 1;
+    fill: #83dde6;
+    fill-opacity: 0.8;
+}
+
+.active {
+    stroke: #222 !important;
+    stroke-width: 2 !important;
+    z-index: 800;
+    fill-opacity: 0.95 !important;
+}
+
+.leaflet-container svg g path:hover {
+    filter: brightness(150%) !important
+}

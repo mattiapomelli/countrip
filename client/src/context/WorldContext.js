@@ -80,7 +80,7 @@ export default ({ children }) => {
             if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge){
                 layer.bringToFront()
             }
-            layer.setStyle(mapStyles.active)
+            //layer.setStyle(mapStyles.active)
             //layer.setZIndexOffset(2000)
             layer.active = true  //attaching active property to the layer so we can use it to handle styling
             activeLayer.current = layer
@@ -90,7 +90,8 @@ export default ({ children }) => {
     const resetActiveLayer = () => {    //reset active layer and bring style back to normal
         setSelected(null)
         if(activeLayer.current){
-            activeLayer.current.setStyle(mapStyles.nonActive)
+            //activeLayer.current.setStyle(mapStyles.nonActive)
+            activeLayer.current.getElement().classList.remove("active")
             activeLayer.current.active = false
             activeLayer.current = null
         }
@@ -118,6 +119,8 @@ export default ({ children }) => {
                 sorted.reverse()
             }
             setCountries(sorted)
+            
+            console.log(layersRef.current.leafletElement)
             layersRef.current.leafletElement.setStyle(mapStyles[property])  //set the map style based on property selected for the sorting (only if the active property is changed)
         }
     }
