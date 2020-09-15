@@ -1,19 +1,17 @@
-import React, { useContext, useEffect, useState } from "react"
+import React, { useContext, useEffect } from "react"
 import { WorldContext } from "../context/WorldContext"
 import "../css/countrycard.css"
 import { formatNumber } from "../utils/utils"
 
 const CountryCard = () => {
-    const { selected, average } = useContext(WorldContext)
-    const [ slide, setSlide ] = useState(1) // current slide of slideshow
+    const { selected, average, slide, setSlide } = useContext(WorldContext)
+    //const [ slide, setSlide ] = useState(1) // current slide of slideshow
 
     useEffect(() => {   
-
-        calculateWidth("population")
+        calculateWidth("population")    //calculates the width of the lines which shows country statistics against average
         calculateWidth("area")
         calculateWidth("density")
         calculateWidth("gini")
-
     })
 
     const calculateWidth = (property) => {
@@ -27,10 +25,9 @@ const CountryCard = () => {
             averageDiv.style.width = "100%"
             selectedDiv.style.width = `${(selected[property]*100) / average[property]}%`
         }
-
     }
 
-    useEffect(() => {
+    useEffect(() => {   //change slide
         const element = document.getElementById("inner")
         element.style.marginLeft = `-${(slide-1)*100}%`
 
@@ -110,7 +107,8 @@ const CountryCard = () => {
                                             <h5>Languages</h5>
                                             <h4>
                                                 {
-                                                    selected.languages.map((language, index) => { return (<span key={index}> {language.name}</span>)})
+                                                    selected.languages.map((language, index) => { return (<span key={index}>{language.name}
+                                                    {index === selected.languages.length - 1 ? "" : ", "}</span>)})
                                                 }
                                             </h4>
                                         </div>
@@ -118,7 +116,28 @@ const CountryCard = () => {
                                             <h5>Currencies</h5>
                                             <h4>
                                                 {
-                                                    selected.currencies.map((currency, index) => { return (<span key={index}> {currency.name}</span>)})
+                                                    selected.currencies.map((currency, index) => { return (<span key={index}> {currency.name}
+                                                    {index === selected.currencies.length - 1 ? "" : ", "}</span>)})
+                                                }
+                                            </h4>
+                                        </div>
+                                    </div>
+                                    <div className="data-row flex-container">
+                                        <div className="data-item column-1">
+                                            <h5>Timezones (UTC)</h5>
+                                            <h4>
+                                                {
+                                                    selected.timezones.map((timezone, index) => { return (<span key={index}> {timezone.substring(3)}
+                                                    {index === selected.timezones.length - 1 ? "" : ", "}</span>)})
+                                                }
+                                            </h4>
+                                        </div>
+                                        <div className="data-item column-2">
+                                            <h5>Regional Trade Blocs</h5>
+                                            <h4>
+                                                {
+                                                    selected.regionalBlocs.map((block, index) => { return (<span key={index}>{block.name}
+                                                    {index === selected.regionalBlocs.length - 1 ? "" : ", "}</span>)})
                                                 }
                                             </h4>
                                         </div>
@@ -127,9 +146,31 @@ const CountryCard = () => {
                             </div>
                             <div className="slide slide_3">
                                 <div className="slide-content">
-                                        <h2>Slide 3</h2>
-                                        <h2>Slide 3</h2>
-                                        <h2>Slide 3</h2>
+                                    <div className="data-row flex-container">
+                                        <div className="data-item column-1">
+                                            <h5>Native Name</h5>
+                                            <h3>{selected.nativeName}</h3>
+                                        </div>
+                                        <div className="data-item column-2">
+                                            <h5>Demonym</h5>
+                                            <h3>{selected.demonym}</h3>
+                                        </div>
+                                    </div>
+                                    <div className="data-row flex-container">
+                                        <div className="data-item column-1">
+                                            <h5>Calling Codes</h5>
+                                            <h3>
+                                                {
+                                                    selected.callingCodes.map((code, index) => { return (<span key={index}>+{code}
+                                                    {index === selected.callingCodes.length - 1 ? "" : ", "}</span>)})
+                                                }
+                                            </h3>
+                                        </div>
+                                        <div className="data-item column-2">
+                                            <h5>Top level domain</h5>
+                                            <h3>{selected.topLevelDomain}</h3>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

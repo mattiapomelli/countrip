@@ -14,6 +14,7 @@ export default ({ children }) => {
     const [loaded, setLoaded] = useState(false)
     const [activeProperty, setActiveProperty] = useState("name")  //keeps track of the currently selected property ("name", "area", "population")
     const [average, setAverage] = useState({population: 0, area: 0})
+    const [slide, setSlide] = useState(1)   //current slide of country card, stored in context because must be remembered even when active country changes
 
     useEffect(() => {
         getAllCountriesData()
@@ -127,7 +128,7 @@ export default ({ children }) => {
             { !loaded ? <div className="loading-container"><h1>Loading...</h1></div> : 
             <WorldContext.Provider
             value={{selected, layersRef, countries, setCountries, findLayerByCode, setActiveLayer, resetActiveLayer,
-                findCountryByCode, sortCountries, activeProperty, setActiveProperty, activeLayer, average}}>
+                findCountryByCode, sortCountries, activeProperty, setActiveProperty, activeLayer, average, slide, setSlide}}>
                 { children }
             </WorldContext.Provider>
             }

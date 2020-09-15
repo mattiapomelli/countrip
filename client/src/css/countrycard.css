@@ -68,7 +68,7 @@
 
 .card-legend {
     margin: auto;
-    padding: 10px 0;
+    height: 5%;
 }
 .card-legend i {
     height: 0.7rem;
@@ -107,7 +107,7 @@
 
 /* Text */
 
-.data-item h1, .data-item h5, .data-item h4  {
+.data-item h1, .data-item h5, .data-item h4, .data-item h3  {
     margin: 0;
     line-height: 1;
 }
@@ -123,8 +123,12 @@
     margin-bottom: 0.3rem;
 }
 .data-item h4 {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     font-weight: 400;
+}
+.data-item h3 {
+    font-weight: 400;
+    font-size: 1.1rem;
 }
 
 
@@ -171,6 +175,8 @@
     width: calc(100% / 3);     /* 100/number of slides */
     float:left;
     height: 100%;
+    display: flex;
+    flex-wrap: wrap;
 }
 .slide-content {
     width: 80%;
@@ -196,7 +202,7 @@
     opacity: 1;
 }
 .slide-arrow:disabled img {
-    opacity: 0.4;
+    opacity: 0.3;
 }
 
 /* Bullets */
@@ -211,7 +217,7 @@
     width: 0.5rem;
     height: 0.5rem;
     background-color: #3D3D3D;
-    opacity: 0.4;
+    opacity: 0.3;
     margin: 0 10px;
     border-radius: 100%;
     box-sizing: border-box;
