@@ -2,6 +2,7 @@
     --table-headers-height: 50px;
     --grid-gap-size: 10px;
     --cell-vertical-padding: 12px;
+    --theme-toggler-height: 40px;
 }
 
 body {
@@ -102,6 +103,4 @@ body {
         max-height: calc(28vh - var(--table-headers-height) + var(--grid-gap-size));
     }
 }
-
-
 
