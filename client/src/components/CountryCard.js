@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from "react"
 import { WorldContext } from "../context/WorldContext"
+import Tooltip from "./Tooltip"
 import "../css/countrycard.css"
 import { formatNumber } from "../utils/utils"
 
@@ -86,13 +87,13 @@ const CountryCard = () => {
 
                                         <div className="data-row flex-container">
                                             <div className="data-item column-1">
-                                                <h5>Density (P/km2)</h5>
+                                                <span className="span-title">Density (P/km2)</span>
                                                 <h1>{selected.density ? formatNumber(selected.density) : "N.A."}</h1>
                                                 <div className="country-line" id="selected-density"></div>
                                                 <div className="average-line" id="average-density"></div>
                                             </div>
                                             <div className="data-item column-2">
-                                                <h5>Gini</h5>
+                                                <span className="span-title">Gini</span><Tooltip/>
                                                 <h1>{selected.gini ? selected.gini : "N.A."}</h1>
                                                 <div className="country-line" id="selected-gini"></div>
                                                 <div className="average-line" id="average-gini"></div>
@@ -187,11 +188,6 @@ const CountryCard = () => {
                 </button>
 
             </div>
-
-            
-            
-
-            {/*  */}
         </>
     )
 }

@@ -1,0 +1,7 @@
+<svg viewBox="0 0 50 50" fill="none">
+    <g id="exit">
+        <circle cx="25" cy="25" r="25" fill="#F1B900"/>
+        <path d="M22 10H28V16H22V10Z" fill="white"/>
+        <path d="M22 20H28V40H22V20Z" fill="white"/>
+    </g>
+</svg>
