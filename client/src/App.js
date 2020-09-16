@@ -9,7 +9,7 @@ import { WorldContext } from './context/WorldContext';
 import mapStyles from './utils/mapStyles'
 
 function App() {
-  	const { selected, layersRef, theme, activeProperty, activeLayer } = useContext(WorldContext)
+  	const { selected, layersRef, activeProperty, activeLayer, setTheme } = useContext(WorldContext)
 
   	const toggleTheme = (event) => {
 
@@ -22,9 +22,9 @@ function App() {
 	  }
 	  
 	const changeTheme = (mode) => {
-		transition()
+		themeTransition()
       	document.documentElement.setAttribute('data-theme', mode)
-      	theme.current = mode
+      	setTheme(mode)
       	layersRef.current.leafletElement.setStyle(mapStyles[mode].default)				// change theme of default things
       	layersRef.current.leafletElement.setStyle(mapStyles[mode][activeProperty])		// for active property
       	if(activeLayer.current){
@@ -32,7 +32,7 @@ function App() {
       	}
 	}
 
-	const transition = () => {
+	const themeTransition = () => {			//sets a temporary class for transition all the changes caused by the team
 		document.documentElement.classList.add('transition')
 		window.setTimeout(() => {
 			document.documentElement.classList.remove('transition')

@@ -8,7 +8,6 @@ import "../css/world.css"
 import { WorldContext } from "../context/WorldContext"
 import Legend from "./Legend"
 import mapStyles from "../utils/mapStyles"
-import { parameters, formatNumber } from "../utils/utils"
 
 
 const markerIcon = new Icon({
@@ -66,7 +65,7 @@ const World = () => {
         //set style back to the style before going hover it
         event.target.setStyle(prevStyle.current)
         if(event.target.active) {
-            event.target.setStyle(mapStyles[theme.current].active)
+            event.target.setStyle(mapStyles[theme].active)
         }
         document.getElementById("country-hover-name").innerHTML = ""
     }
@@ -116,7 +115,7 @@ const World = () => {
 
     return (
             <Map ref={mapRef} zoom={2} center={[40, 0]} onClick={onMapClick}>
-                <GeoJSON ref={layersRef} style={mapStyles[theme.current].default} data={countriesCoords.features} onEachFeature={onEachCountry}/>
+                <GeoJSON ref={layersRef} style={mapStyles[theme].default} data={countriesCoords.features} onEachFeature={onEachCountry}/>
                 {/* <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" noWrap={true}/> */}
                 {
                     selected && <Marker position={[selected.latlng[0], selected.latlng[1]]} icon={markerIcon}/>

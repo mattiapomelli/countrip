@@ -15,7 +15,7 @@ export default ({ children }) => {
     const [activeProperty, setActiveProperty] = useState("name")  //keeps track of the currently selected property ("name", "area", "population")
     const [average, setAverage] = useState({population: 0, area: 0})
     const [slide, setSlide] = useState(1)   //current slide of country card, stored in context because must be remembered even when active country changes
-    const theme = useRef("light")
+    const [theme, setTheme] = useState("light")
 
     useEffect(() => {
         getAllCountriesData()
@@ -81,7 +81,7 @@ export default ({ children }) => {
             if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge){
                 layer.bringToFront()
             }
-            layer.setStyle(mapStyles[theme.current].active)
+            layer.setStyle(mapStyles[theme].active)
             //layer.setZIndexOffset(2000)
             layer.active = true  //attaching active property to the layer so we can use it to handle styling
             activeLayer.current = layer
@@ -91,7 +91,7 @@ export default ({ children }) => {
     const resetActiveLayer = () => {    //reset active layer and bring style back to normal
         setSelected(null)
         if(activeLayer.current){
-            activeLayer.current.setStyle(mapStyles[theme.current].nonActive)
+            activeLayer.current.setStyle(mapStyles[theme].nonActive)
             activeLayer.current.active = false
             activeLayer.current = null
         }
@@ -119,7 +119,7 @@ export default ({ children }) => {
                 sorted.reverse()
             }
             setCountries(sorted)
-            layersRef.current.leafletElement.setStyle(mapStyles[theme.current][property])  //set the map style based on property selected for the sorting (only if the active property is changed)
+            layersRef.current.leafletElement.setStyle(mapStyles[theme][property])  //set the map style based on property selected for the sorting (only if the active property is changed)
         }
     }
 
@@ -128,7 +128,7 @@ export default ({ children }) => {
             { !loaded ? <div className="loading-container"><h1>Loading...</h1></div> : 
             <WorldContext.Provider
             value={{selected, layersRef, countries, setCountries, findLayerByCode, setActiveLayer, resetActiveLayer,
-                findCountryByCode, sortCountries, activeProperty, setActiveProperty, activeLayer, average, slide, setSlide, theme}}>
+                findCountryByCode, sortCountries, activeProperty, setActiveProperty, activeLayer, average, slide, setSlide, theme, setTheme}}>
                 { children }
             </WorldContext.Provider>
             }
