@@ -9,24 +9,23 @@ const CountryCard = () => {
     //const [ slide, setSlide ] = useState(1) // current slide of slideshow
 
     useEffect(() => {   
-        calculateWidth("population")    //calculates the width of the lines which shows country statistics against average
-        calculateWidth("area")
-        calculateWidth("density")
-        calculateWidth("gini")
-    })
+        console.log("yo")
+        const properties = ["population", "area", "density", "gini"]
+        //calculate width of statistic lines for every property
+        properties.forEach(property => {
+            const selectedDiv = document.getElementById(`selected-${property}`)
+            const averageDiv = document.getElementById(`average-${property}`) 
+    
+            if(selected[property] > average[property]){
+                selectedDiv.style.width = "100%"
+                averageDiv.style.width = `${(average[property]*100) / selected[property]}%`
+            } else {
+                averageDiv.style.width = "100%"
+                selectedDiv.style.width = `${(selected[property]*100) / average[property]}%`
+            }
+        })
 
-    const calculateWidth = (property) => {
-        const selectedDiv = document.getElementById(`selected-${property}`)
-        const averageDiv = document.getElementById(`average-${property}`) 
-
-        if(selected[property] > average[property]){
-            selectedDiv.style.width = "100%"
-            averageDiv.style.width = `${(average[property]*100) / selected[property]}%`
-        } else {
-            averageDiv.style.width = "100%"
-            selectedDiv.style.width = `${(selected[property]*100) / average[property]}%`
-        }
-    }
+    }, [selected, average])
 
     useEffect(() => {   //change slide
         const element = document.getElementById("inner")
@@ -39,7 +38,7 @@ const CountryCard = () => {
     }, [slide])
 
     return (
-        <>
+        <> 
             <div className="card-header flex-container">
                 <div className="header-left flex-container">
                     <img src={selected.flag} alt="country flag"/>

@@ -5,7 +5,7 @@ import mapStyles from "../utils/mapStyles"
 
 const Legend = () => {
     const { activeProperty, theme } = useContext(WorldContext)
-    let grades = parameters[activeProperty].grades
+    const grades = parameters[activeProperty].grades
     let colors = parameters[activeProperty].colors[theme]
 
     return(

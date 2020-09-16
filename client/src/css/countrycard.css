@@ -1,12 +1,13 @@
 .country-card {
     grid-area: card;
     font-family: 'Poppins', sans-serif;
-    background: #eee;
+    background: var(--card-body);
     /* height: 30vh; */
     box-sizing: border-box;
     font-size: 0.8rem;
     overflow: hidden;
     border-radius: 10px;
+    color: var(--text-color);
 }
 
 .flex-container {
@@ -30,14 +31,14 @@
     width: 40%;
     height: 100%;
     padding: 7px;
-    background-color: #6672da79;
+    background-color: var(--card-header-right)
 }
 .header-right {
     align-items: center;
     width: 60%;
     height: 100%;
     padding: 15px;
-    background-color: #aab0e43a;
+    background-color: var(--card-header-left)
 }
 .country-name {
     font-size: 1.3em;
@@ -60,7 +61,7 @@
     box-sizing: border-box;
 }
 .empty-card-container h4 {
-    color: #333;
+    color: var(--text-color);
 }
 
 
@@ -153,6 +154,7 @@
     justify-content: center;
     align-items: center;
     height: 70%;
+    color: var(--text-color);
 }
 
 #slider {

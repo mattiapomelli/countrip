@@ -9,9 +9,10 @@
 /* Legend */
 
 .legend {
-    background-color: var(--background-color);
+    background-color: var(--legend-background);
     border-radius: 10px;
     padding: 10px;
+    color: var(--text-color);
 }
 
 .legend-item {

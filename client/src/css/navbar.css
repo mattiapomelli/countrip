@@ -1,6 +1,6 @@
 .header-container {
     font-family: 'Poppins', sans-serif;
-    background: #484D76;
+    background: var(--navbars-color);
     color: white;
     width: 100%;
     padding: 0rem 3rem;
@@ -15,6 +15,9 @@ header {
     justify-content: space-between;
 }
 
+.logo {
+    font-weight: 800;
+}
 
 
 /* Theme switcher */

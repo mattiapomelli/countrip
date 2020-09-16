@@ -7,9 +7,9 @@
     position: relative;
     padding-top: var(--table-headers-height);
     border-radius: 10px;
-    overflow: hidden;
     height: 100%;
     box-sizing: border-box;
+    overflow: hidden;
 }
 
 table {
@@ -64,7 +64,7 @@ td {
     color: var(--text-color);
 }
 tbody tr:nth-child(even) {
-    background-color: #fff;
+    background-color: var(--even-table-rows);
 }
 
 /* Fixed headers */
@@ -73,7 +73,8 @@ tbody tr:nth-child(even) {
     width: 100%;
     top: 0;
     left: 0;
-    background-color: #051E34;
+    background-color: var(--navbars-color);
+    border-radius: 10px 10px 0 0
 }
 
 .table-body {
@@ -81,7 +82,8 @@ tbody tr:nth-child(even) {
     height: 100%;
     /* max-height: calc(40vh - var(--table-headers-height) - var(--grid-gap-size)*4); */
     overflow: overlay;  /* other option could be auto */
-    background-color: #eee;
+    background-color: var(--card-body);
+    border-radius: 0 0 10px 10px;
 }
 
 /* Scrollbar */
@@ -94,6 +96,7 @@ tbody tr:nth-child(even) {
 ::-webkit-scrollbar-thumb { /* Handle */
     background: #888;
     border-radius: 20px;
+    height: 30px;
 }
 ::-webkit-scrollbar-thumb:hover { /* Handle on hover */
     background: #555;

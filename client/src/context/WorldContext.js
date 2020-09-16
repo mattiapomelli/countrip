@@ -16,6 +16,11 @@ export default ({ children }) => {
     const [average, setAverage] = useState({population: 0, area: 0})
     const [slide, setSlide] = useState(1)   //current slide of country card, stored in context because must be remembered even when active country changes
     const [theme, setTheme] = useState("light")
+    const themeRef  = useRef("light")
+
+    useEffect(() => {
+        themeRef.current = theme
+    }, [theme])
 
     useEffect(() => {
         getAllCountriesData()
@@ -81,7 +86,7 @@ export default ({ children }) => {
             if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge){
                 layer.bringToFront()
             }
-            layer.setStyle(mapStyles[theme].active)
+            layer.setStyle(mapStyles[themeRef.current].active)
             //layer.setZIndexOffset(2000)
             layer.active = true  //attaching active property to the layer so we can use it to handle styling
             activeLayer.current = layer
@@ -128,7 +133,8 @@ export default ({ children }) => {
             { !loaded ? <div className="loading-container"><h1>Loading...</h1></div> : 
             <WorldContext.Provider
             value={{selected, layersRef, countries, setCountries, findLayerByCode, setActiveLayer, resetActiveLayer,
-                findCountryByCode, sortCountries, activeProperty, setActiveProperty, activeLayer, average, slide, setSlide, theme, setTheme}}>
+                findCountryByCode, sortCountries, activeProperty, setActiveProperty, activeLayer, average, slide, setSlide, theme,
+                setTheme, themeRef}}>
                 { children }
             </WorldContext.Provider>
             }

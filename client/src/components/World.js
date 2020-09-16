@@ -19,7 +19,7 @@ const markerIcon = new Icon({
 const World = () => {
     //const [color, setColor] = useState("#000")
     //const latestColor = useRef("")
-    const { selected, layersRef, setActiveLayer, findCountryByCode, activeProperty, resetActiveLayer, theme } = useContext(WorldContext)
+    const { selected, layersRef, setActiveLayer, findCountryByCode, activeProperty, resetActiveLayer, theme, setSlide, themeRef } = useContext(WorldContext)
     const mapRef = useRef()
     const prevStyle = useRef(mapStyles["light"].default)
 
@@ -65,7 +65,7 @@ const World = () => {
         //set style back to the style before going hover it
         event.target.setStyle(prevStyle.current)
         if(event.target.active) {
-            event.target.setStyle(mapStyles[theme].active)
+            event.target.setStyle(mapStyles[themeRef.current].active)
         }
         document.getElementById("country-hover-name").innerHTML = ""
     }
@@ -102,14 +102,11 @@ const World = () => {
         }                
     }, [selected])
 
-    // const changeColor = (event) => {
-    //     setColor(event.target.value)
-    // }
-
     const onMapClick = () => {
         let isHovering = document.getElementById("country-hover-name").innerHTML    //simple trick to understand if user clicked on the map but outside every polygon
         if(!isHovering){
             resetActiveLayer()
+            setSlide(1)
         }
     } 
 
