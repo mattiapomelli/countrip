@@ -2,7 +2,7 @@
     --table-headers-height: 50px;
     --grid-gap-size: 10px;
     --cell-vertical-padding: 12px;
-    --theme-toggler-height: 40px;
+    --theme-toggler-height: 20px;
 }
 
 body {
@@ -12,7 +12,6 @@ body {
 }
 
 .App {
-    max-width: 95%;
     margin: auto;
 }
 
@@ -30,6 +29,8 @@ body {
     padding-top: 10px;
     padding-bottom: 10px;
     box-sizing: border-box;
+    max-width: 95%;
+    margin: auto;
 }
 
 /* Loading screen */

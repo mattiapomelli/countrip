@@ -22,46 +22,4 @@ html.transition *:after {
 }
 
 
-/* Theme switcher */
 
-input[type=checkbox]{
-	height: 0;
-	width: 0;
-	visibility: hidden;
-}
-
-label {
-	cursor: pointer;
-	text-indent: -9999px;
-	width: calc(var(--theme-toggler-height) * 2);
-	height: var(--theme-toggler-height);
-	background: grey;
-	display: block;
-	border-radius: 100px;
-	position: relative;
-}
-
-label:after {
-	content: '';
-	position: absolute;
-	top: calc(var(--theme-toggler-height) * 0.05);
-	left: calc(var(--theme-toggler-height) * 0.05);
-	width: calc(var(--theme-toggler-height) * 0.9);
-	height: calc(var(--theme-toggler-height) * 0.9);
-	background: #fff;
-	border-radius: 90px;
-	transition: 0.3s;
-}
-
-input:checked + label {
-	background: #38105e;
-}
-
-input:checked + label:after {
-	left: calc(100% - var(--theme-toggler-height)*0.05);
-	transform: translateX(-100%);
-}
-
-label:active:after {
-	width: calc(var(--theme-toggler-height) * 1.1);
-}
