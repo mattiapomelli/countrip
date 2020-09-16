@@ -6,8 +6,9 @@ import countriesCoords from "../data/countriesSimplified10.json"
 import "leaflet/dist/leaflet.css"
 import "../css/world.css"
 import { WorldContext } from "../context/WorldContext"
+import Legend from "./Legend"
 import mapStyles from "../utils/mapStyles"
-import { parameters, formatNumber } from "../utils/utils"
+
 
 const markerIcon = new Icon({
     iconUrl: "/icons/markericon.svg",
@@ -18,9 +19,9 @@ const markerIcon = new Icon({
 const World = () => {
     //const [color, setColor] = useState("#000")
     //const latestColor = useRef("")
-    const { selected, layersRef, setActiveLayer, findCountryByCode, activeProperty, resetActiveLayer } = useContext(WorldContext)
+    const { selected, layersRef, setActiveLayer, findCountryByCode, activeProperty, resetActiveLayer, theme } = useContext(WorldContext)
     const mapRef = useRef()
-    const prevStyle = useRef(mapStyles.default)
+    const prevStyle = useRef(mapStyles["light"].default)
 
     useEffect(() => {
          //latestColor.current = color
@@ -53,7 +54,6 @@ const World = () => {
         //get current style of layer and store it in prevStyle.current
         prevStyle.current = { color: layer.options.color, fillColor: layer.options.fillColor, fillOpacity: layer.options.fillOpacity }
 
-
         //set hover style
         layer.setStyle({
             fillColor: lightenColor(layer.options.fillColor, -15)
@@ -65,7 +65,7 @@ const World = () => {
         //set style back to the style before going hover it
         event.target.setStyle(prevStyle.current)
         if(event.target.active) {
-            event.target.setStyle(mapStyles.active)
+            event.target.setStyle(mapStyles[theme].active)
         }
         document.getElementById("country-hover-name").innerHTML = ""
     }
@@ -82,31 +82,6 @@ const World = () => {
             mouseover: onCountryHover,
             mouseout: resetHighlight
         })
-    }
-
-    const renderLegend = (property) => {
-        if(property === "name"){
-            return null
-        }
-        let items = []
-
-        let grades = parameters[property].grades
-        let colors = parameters[property].colors
-
-        for (let i = 0; i < grades.length; i++){
-            items.push(
-                <div className="legend-item" key={i}>
-                    <i style ={{backgroundColor: colors[i], opacity: mapStyles.default.fillOpacity}}></i>
-                    <span>{formatNumber(grades[i])}
-                    {grades[i + 1] ? " - " +  formatNumber(grades[i + 1]) : "+"}</span>
-                </div>
-            )
-        }
-
-        return (<div className="legend">
-                    <div className="legend-title">{property}</div>
-                    {items}
-                </div>)
     }
 
     useEffect(() => {       //pan to country selected when map is zoomed
@@ -140,13 +115,14 @@ const World = () => {
 
     return (
             <Map ref={mapRef} zoom={2} center={[40, 0]} onClick={onMapClick}>
-                <GeoJSON ref={layersRef} style={mapStyles.default} data={countriesCoords.features} onEachFeature={onEachCountry}/>
+                <GeoJSON ref={layersRef} style={mapStyles[theme].default} data={countriesCoords.features} onEachFeature={onEachCountry}/>
                 {/* <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" noWrap={true}/> */}
                 {
                     selected && <Marker position={[selected.latlng[0], selected.latlng[1]]} icon={markerIcon}/>
                 }
-                <Control position="topright">
-                    {renderLegend(activeProperty)}
+                <Control position="topright" className="legend-container">
+                    { activeProperty !== "name" && <Legend />}
+                    
                 </Control>
 
                 <div id="country-hover-name"></div>
