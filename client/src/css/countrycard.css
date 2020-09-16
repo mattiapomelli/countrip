@@ -2,7 +2,7 @@
     grid-area: card;
     font-family: 'Poppins', sans-serif;
     background: #eee;
-    height: 30vh;
+    /* height: 30vh; */
     box-sizing: border-box;
     font-size: 0.8rem;
     overflow: hidden;
@@ -46,6 +46,7 @@
 }
 .country-info {
     font-size: 1em;
+    line-height: 1em;
 }
 
 

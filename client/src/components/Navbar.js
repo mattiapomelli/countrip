@@ -1,4 +1,5 @@
 import React, {useContext} from "react"
+import Searchbar from './Searchbar'
 import { WorldContext } from "../context/WorldContext"
 import mapStyles from '../utils/mapStyles'
 import "../css/navbar.css"
@@ -39,7 +40,11 @@ const Navbar = () => {
             <header>
                 <div className="logo">Countrip</div>
 
-                <input type="checkbox" id="switch" name="theme" onChange={toggleTheme}/><label htmlFor="switch">Toggle</label>
+                <Searchbar />
+
+                <div>
+                    <input type="checkbox" id="switch" name="theme" onChange={toggleTheme}/><label htmlFor="switch">Toggle</label>
+                </div>
             </header>
         </div>
     )

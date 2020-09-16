@@ -5,9 +5,11 @@
 
 .table-container {
     position: relative;
-    padding-top: var(--table-headers-height);;
+    padding-top: var(--table-headers-height);
     border-radius: 10px;
     overflow: hidden;
+    height: 100%;
+    box-sizing: border-box;
 }
 
 table {
@@ -75,7 +77,9 @@ tbody tr:nth-child(even) {
 }
 
 .table-body {
-    max-height: calc(65vh - var(--table-headers-height) - var(--grid-gap-size)*4);
+    display: block;
+    height: 100%;
+    /* max-height: calc(40vh - var(--table-headers-height) - var(--grid-gap-size)*4); */
     overflow: overlay;  /* other option could be auto */
     background-color: #eee;
 }

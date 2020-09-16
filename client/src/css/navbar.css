@@ -3,11 +3,13 @@
     background: #484D76;
     color: white;
     width: 100%;
-    padding: 1rem 3rem;
+    padding: 0rem 3rem;
+    height: 7vh;
     box-sizing: border-box;
 }
 
 header {
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -20,7 +22,7 @@ header {
 input[type=checkbox]{
 	height: 0;
 	width: 0;
-	visibility: hidden;
+	display: none;
 }
 
 label {

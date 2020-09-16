@@ -1,7 +1,8 @@
 :root {
-    --table-headers-height: 50px;
-    --grid-gap-size: 10px;
-    --cell-vertical-padding: 12px;
+    font-size: 15px;
+    --table-headers-height: 40px;
+    --grid-gap-size: 20px;
+    --cell-vertical-padding: 10px;
     --theme-toggler-height: 20px;
 }
 
@@ -18,19 +19,17 @@ body {
 .main-container {
     display: grid;
     grid-template-columns: 1fr 35%;
-    grid-template-rows: min-content min-content min-content;
+    grid-template-rows: 1fr 50vh;
     grid-column-gap: var(--grid-gap-size);
     grid-row-gap: var(--grid-gap-size);
     grid-template-areas: 
     "map card"
-    "map search"
     "map stats";
-    height: 100vh;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    box-sizing: border-box;
+    height: 93vh;
+    padding: var(--grid-gap-size) 0;
     max-width: 95%;
     margin: auto;
+    box-sizing: border-box;
 }
 
 /* Loading screen */
@@ -50,29 +49,19 @@ body {
 
 /* Media Queries */
 
-@media only screen and (max-width: 1300px) {
-    :root {
-        font-size: 15px;
-    }
-}
 
 @media only screen and (max-width: 1150px) {
     :root {
-        --table-headers-height: 50px;
-        --cell-vertical-padding: 10px;
+        --table-headers-height: 40px;
+        --cell-vertical-padding: 9px;
     }
 
     .main-container {
         grid-template-columns: 2fr 3fr;
-        grid-template-rows: min-content min-content 1fr;
+        grid-template-rows: 35vh 1fr;
         grid-template-areas: 
-            "search stats"
             "card stats"
             "map map";
-    }
-
-    .table-body {
-        max-height: calc(34vh - var(--table-headers-height) + var(--grid-gap-size));
     }
 
 }
@@ -89,19 +78,18 @@ body {
         font-size: 14px;
     }
     .main-container {
+        height: 100%;   /* the container extends as much as necessary and body become scrollable */
         grid-template-columns: 1fr;
-        grid-template-rows: min-content 1fr min-content min-content;
+        grid-template-rows: 35vh 30vh 40vh;
         grid-template-areas: 
             "card"
             "map"
-            "search"
             "stats";
-    }
-    .search-container {
-        height: 3.5vh;
-    }
-    .table-body {
-        max-height: calc(28vh - var(--table-headers-height) + var(--grid-gap-size));
     }
 }
 
+@media only screen and (max-width: 600px) {
+    :root {
+        font-size: 13px;
+    }
+}

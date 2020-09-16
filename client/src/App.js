@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import World from './components/World'
 import CountryCard from './components/CountryCard'
 import Statistics from './components/Statistics'
-import Searchbar from './components/Searchbar'
 import Navbar from './components/Navbar'
 import './css/theme.css'
 import "./style.css"
@@ -28,7 +27,7 @@ function App() {
 			}
 			</div>
 			
-			<Searchbar />
+			
 			<Statistics />
 		</div>
     </div>
