@@ -6,6 +6,7 @@ import countriesCoords from "../data/countriesSimplified10.json"
 import "leaflet/dist/leaflet.css"
 import "../css/world.css"
 import { WorldContext } from "../context/WorldContext"
+import Legend from "./Legend"
 import mapStyles from "../utils/mapStyles"
 import { parameters, formatNumber } from "../utils/utils"
 
@@ -84,31 +85,6 @@ const World = () => {
         })
     }
 
-    const renderLegend = (property) => {
-        if(property === "name"){
-            return null
-        }
-        let items = []
-
-        let grades = parameters[property].grades
-        let colors = parameters[property].colors[theme.current]
-
-        for (let i = 0; i < grades.length; i++){
-            items.push(
-                <div className="legend-item" key={i}>
-                    <i style ={{backgroundColor: colors[i], opacity: mapStyles[theme.current].default.fillOpacity}}></i>
-                    <span>{formatNumber(grades[i])}
-                    {grades[i + 1] ? " - " +  formatNumber(grades[i + 1]) : "+"}</span>
-                </div>
-            )
-        }
-
-        return (<div className="legend">
-                    <div className="legend-title">{property}</div>
-                    {items}
-                </div>)
-    }
-
     useEffect(() => {       //pan to country selected when map is zoomed
         const map = mapRef.current.leafletElement
 
@@ -146,7 +122,8 @@ const World = () => {
                     selected && <Marker position={[selected.latlng[0], selected.latlng[1]]} icon={markerIcon}/>
                 }
                 <Control position="topright" className="legend-container">
-                    {renderLegend(activeProperty)}
+                    { activeProperty !== "name" && <Legend />}
+                    
                 </Control>
 
                 <div id="country-hover-name"></div>

@@ -9,7 +9,7 @@
 /* Legend */
 
 .legend {
-    background-color: rgb(255, 255, 255);
+    background-color: var(--background-color);
     border-radius: 10px;
     padding: 10px;
 }
