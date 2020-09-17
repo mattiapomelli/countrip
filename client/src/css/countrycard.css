@@ -31,39 +31,26 @@
     width: 40%;
     height: 100%;
     padding: 7px;
-    background-color: var(--card-header-right)
+    background-color: var(--card-header-left)
 }
 .header-right {
     align-items: center;
     width: 60%;
     height: 100%;
     padding: 15px;
-    background-color: var(--card-header-left)
+    background-color: var(--card-header-right)
 }
 .country-name {
     font-size: 1.3em;
     line-height: 1.1;
     font-weight: 700;
+    color: #000;
 }
 .country-info {
     font-size: 1em;
     line-height: 1em;
+    color: #000;
 }
-
-
-/* Card Empty */
-
-.empty-card-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    box-sizing: border-box;
-}
-.empty-card-container h4 {
-    color: var(--text-color);
-}
-
 
 
 /* ---- */
@@ -200,12 +187,18 @@
 .slide-arrow:disabled {
     cursor: auto;
 }
-.slide-arrow img {
+.slide-arrow svg {
     width: 8px;
-    opacity: 1;
+    opacity: 0.8;
 }
-.slide-arrow:disabled img {
-    opacity: 0.3;
+.slide-arrow:disabled svg {
+    opacity: 0.25;
+}
+#right-arrow svg {
+    transform: rotate(180deg);
+}
+.slide-arrow svg path {
+    stroke: var(--text-color);
 }
 
 /* Bullets */
@@ -219,7 +212,7 @@
 .bullets i {
     width: 0.5rem;
     height: 0.5rem;
-    background-color: #3D3D3D;
+    background-color: var(--text-color);
     opacity: 0.3;
     margin: 0 10px;
     border-radius: 100%;
@@ -227,6 +220,21 @@
     cursor: pointer;
 }
 .bullet-active {
-    opacity: 1 !important;
+    opacity: 0.8 !important;
     transition: opacity 0.5s;
+}
+
+
+
+/* Card Empty */
+
+.empty-card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    box-sizing: border-box;
+}
+.empty-card-container h4 {
+    color: var(--text-color-soft);
 }

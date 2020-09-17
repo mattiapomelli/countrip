@@ -22,10 +22,10 @@ table {
 /* Columns */
 tr td:first-child, tr th:first-child { /* First column */
     padding-left: 10px;
-    width: 10%;
+    width: 9%;
 }
 tr td:nth-child(2), tr th:nth-child(2) { /* Second column */
-    width: 38%;
+    width: 39%;
 }
 tr td:nth-child(3), tr th:nth-child(3) { /* Thirdd column */
     width: 26%;
@@ -36,7 +36,7 @@ tr td:nth-child(3), tr th:nth-child(4) { /* Thirdd column */
 
 /* Cells */
 th {
-    padding-right: 5px;
+    padding-left: 5px;
     height: var(--table-headers-height);
     box-sizing: border-box;
     text-align: left;
@@ -56,10 +56,13 @@ th sup {
     font-size: .5rem;
     /* vertical-align: top; */
 }
+th:hover:not(:first-of-type) {
+    background-color: rgba(0, 0, 0, 0.048);
+}
 td {
     padding-top: var(--cell-vertical-padding);
     padding-bottom: var(--cell-vertical-padding);
-    padding-right: 5px;
+    padding-left: 5px;
     font-size: 0.8rem;
     color: var(--text-color);
 }
@@ -123,8 +126,8 @@ tbody tr:nth-child(even) {
 }
 
 .extra-rotated {
-    transform: rotate(-180deg);
-    -ms-transform: rotate(-180deg);
-    -webkit-transform: rotate(-180deg);
+    transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
 }
 

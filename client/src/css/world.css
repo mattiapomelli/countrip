@@ -30,8 +30,10 @@
     box-sizing: border-box;
 }
 
-.legend-item span {
-    font-size: 0.67rem;
+.legend-item {
+    font-size: 0.7rem;
+    line-height: 1.5em;
+    font-family: 'Poppins', sans-serif;
 }
 
 .legend-title {
@@ -50,7 +52,8 @@
     bottom: 3%;
     transform: translateX(-50%);
     z-index: 800;
-    background-color: #d9ddeab7;
+    background-color: var(--map-background-opacity);
+    color: var(--text-color);
     padding: 5px 10px;
     border-radius: 20px;
     font-family: 'Poppins', sans-serif;
@@ -69,8 +72,8 @@
 }
 
 .leaflet-control-zoom a {
-    background-color: #e7eaf1 !important;
-    color: #333 !important;
+    background-color: var(--card-body) !important;
+    color: var(--text-color) !important;
 }
 .leaflet-control-zoom a:hover {
     background-color: #cad1e0 !important;
@@ -78,4 +81,8 @@
 
 .leaflet-control-zoom-in {
     border-bottom: 1px solid #777 !important;
+}
+
+.leaflet-control-attribution {
+    background-color: var(--card-body) !important;
 }

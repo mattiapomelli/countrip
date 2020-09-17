@@ -52,7 +52,7 @@ label:after {
 }
 
 input:checked + label {
-	background: #38105e;
+	background: var(--map-background);
 }
 
 input:checked + label:after {
@@ -62,4 +62,13 @@ input:checked + label:after {
 
 label:active:after {
 	width: calc(var(--theme-toggler-height) * 1.1);
+}
+
+.toggle-container {
+	display: flex;
+	align-items: center;
+}
+.toggle-container span {
+	font-size: 0.8rem;
+	margin-left: 0.6rem;
 }

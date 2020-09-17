@@ -22,7 +22,7 @@ function App() {
 			{
 				selected ? <CountryCard /> :
 				<div className="empty-card-container">
-					<h4 className="try">Click on a country</h4>
+					<h4>Click on a country</h4>
 				</div>
 			}
 			</div>

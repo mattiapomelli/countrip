@@ -96,7 +96,7 @@ export default ({ children }) => {
     const resetActiveLayer = () => {    //reset active layer and bring style back to normal
         setSelected(null)
         if(activeLayer.current){
-            activeLayer.current.setStyle(mapStyles[theme].nonActive)
+            activeLayer.current.setStyle(mapStyles[themeRef.current].nonActive)
             activeLayer.current.active = false
             activeLayer.current = null
         }

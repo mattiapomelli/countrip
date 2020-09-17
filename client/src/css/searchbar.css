@@ -1,7 +1,6 @@
 /* Search Bar */
 
 .search-container {
-    height: 4vh;
     position: relative;
     grid-area: search;
 }
@@ -12,9 +11,10 @@
     padding: 5px 40px;
     box-sizing: border-box;
     height: 100%;
-    background-color: #eee;
-    border-radius: 10px;
-    border: 1px solid #aaa;
+    background-color: var(--card-body);
+    color: var(--text-color);
+    border-radius: 15px;
+    border: none;
     outline: none;
     font-family: 'Poppins', sans-serif;
 }
@@ -29,11 +29,12 @@
     top: 50%;
     transform: translateY(-50%);
     outline: none;
-    border: none
+    border: none;
+    cursor: pointer;
 }
 .search-container span {
     font-size: 1.4em;
-    color: #333;
+    color: var(--text-color);
 }
 
 .search-icon {

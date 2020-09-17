@@ -21,7 +21,7 @@
     left: 50%;
     z-index: 5;
     width: 260px;
-    background-color: white;
+    background-color: var(--tooltip-background);
     box-shadow: -5px 5px 10px rgba(0,0,0,.1);
     font-size: 0.7rem;
     border-radius: 10px;    
@@ -41,7 +41,7 @@
     transform: translateX(-50%);
     border-width: 5px;
     border-style: solid;
-    border-color: #fff transparent transparent transparent;
+    border-color: var(--tooltip-background) transparent transparent transparent;
   }
 
 .cancel {

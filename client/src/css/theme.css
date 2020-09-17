@@ -1,27 +1,33 @@
 /* Light mode (default) */
 :root {
     --background-color: #c4cbdd;
-    --map-background: #d9ddea;
+	--map-background: #d9ddea;
+	--map-background-opacity: #d9ddeab7;
 	--text-color: #000;
+	--text-color-soft: rgb(48, 48, 48);
 	--navbars-color: #484D76;
-	--card-header-right: #ADECCD;
-	--card-header-left: #91D8B6;
+	--card-header-right: #D6D7DD;
+	--card-header-left: #AAAECE;
 	--card-body: #EDF0F8;
 	--legend-background: #fff;
 	--even-table-rows: #fff;
+	--tooltip-background: #fff;
 }
 
 /* Dark mode */
 :root[data-theme='dark'] {
     --background-color: #2D3446;
     --map-background: #1E222F;
+    --map-background-opacity: #1E222Fb7;
 	--text-color: #fff;
-	--navbars-color: #808CAB;
+	--text-color-soft: rgb(221, 221, 221);
+	--navbars-color: #555E75;
 	--card-header-right: #6FB8C1;
 	--card-header-left: #44A0AB;
 	--card-body: #151823;
 	--legend-background: rgb(26, 26, 26);
 	--even-table-rows: #000;
+	--tooltip-background: rgb(41, 41, 41);
 }
 
 /* Theme change transition */
@@ -30,7 +36,7 @@ html.transition *,
 html.transition *:before,
 html.transition *:after {
     transition: all 500ms !important; /* background-color 500ms ease-in-out, color 500ms ease-in-out !important; */
-    transition-delay: 0 !important;
+    transition-delay: 0s !important;
 }
 
 

@@ -18,7 +18,7 @@ const Navbar = () => {
 	}
 	  
 	const changeTheme = (mode) => {
-		themeTransition()
+		//themeTransition()
       	document.documentElement.setAttribute('data-theme', mode)
       	setTheme(mode)
       	layersRef.current.leafletElement.setStyle(mapStyles[mode].default)				// change theme of default things
@@ -28,12 +28,12 @@ const Navbar = () => {
       	}
 	}
 
-	const themeTransition = () => {			//sets a temporary class for transition all the changes caused by the team
-		document.documentElement.classList.add('transition')
-		window.setTimeout(() => {
-			document.documentElement.classList.remove('transition')
-		}, 1000)
-    }
+	// const themeTransition = () => {			//sets a temporary class for transition all the changes caused by the team
+	// 	document.documentElement.classList.add('transition')
+	// 	window.setTimeout(() => {
+	// 		document.documentElement.classList.remove('transition')
+	// 	}, 1000)
+    // }
     
     return (
         <div className="header-container">
@@ -42,8 +42,9 @@ const Navbar = () => {
 
                 <Searchbar />
 
-                <div>
+                <div className="toggle-container">
                     <input type="checkbox" id="switch" name="theme" onChange={toggleTheme}/><label htmlFor="switch">Toggle</label>
+					<span>dark mode</span>
                 </div>
             </header>
         </div>
