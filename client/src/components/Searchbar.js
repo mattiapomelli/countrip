@@ -8,11 +8,10 @@ const Searchbar = () => {
     const prevSearch = useRef('')
 
     useEffect(() => {
-        console.log('yo')
-        //remove active style
-        let active = document.getElementsByClassName('active-tab') 
-        while(active.length > 0){
-            active[0].classList.remove('active-tab')
+        //se non e' cambiato il valore di ricerca, quindi solo l'ordine delle nazioni, allora non rieffettuare la ricerca
+        // importante che questo effect sia eseguito (e quindi dichiarato) prima del useEffect seguente che tiene aggiorna il prevSearch
+        if(prevSearch.current === search){  
+            return
         }
 
         if (search !== ""){
@@ -20,26 +19,19 @@ const Searchbar = () => {
                 let regex = new RegExp("^" + search + ".*", "g")
                 return regex.test(country.name.toLowerCase())
             });  //find position of searched country in the table
-            
-            
+                      
             if(index > -1){
-                const list = document.getElementById("countries-list").children
-                const element = list.item(index)                                    //select <tr> element of the searched country
-                element.scrollIntoView()
-                let children = element.children
-                for (let item of children){
-                    item.classList.add('active-tab')
-                }
                 const layer = findLayerByCode(countries[index].alpha3Code)
                 setActiveLayer(layer)
 
             } else {
                 resetActiveLayer()
             }
-        } else {
-            const tableBody = document.getElementsByClassName("table-body")[0]
-            tableBody.scrollTop = 0
-        }      
+        }
+        // else {
+        //     const tableBody = document.getElementsByClassName("table-body")[0]
+        //     tableBody.scrollTop = 0
+        // }      
 
     }, [search, countries, findLayerByCode, setActiveLayer, resetActiveLayer])
 

@@ -88,6 +88,8 @@ export default ({ children }) => {
             activeLayer.current.active = false
             activeLayer.current = null
         }
+        //const tableBody = document.getElementsByClassName("table-body")[0]
+        //tableBody.scrollTop = 0
     }, [])
 
     const setActiveLayer = useCallback(

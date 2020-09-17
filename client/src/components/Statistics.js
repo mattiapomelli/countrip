@@ -1,11 +1,11 @@
-import React, { useContext, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { WorldContext } from "../context/WorldContext"
 import "../css/statistics.css"
 import { formatNumber } from "../utils/utils"
 
 
 const Statistics = () => {
-    const { countries, findLayerByCode, setActiveLayer, sortCountries, setActiveProperty, activeProperty } = useContext(WorldContext)
+    const { countries, findLayerByCode, setActiveLayer, sortCountries, setActiveProperty, activeProperty, selected } = useContext(WorldContext)
     const [ sortType, setSortType ] = useState({name: false, population: false, area: false})
 
     const selectCountry = (code) => {
@@ -31,6 +31,26 @@ const Statistics = () => {
             setActiveProperty(property)
         }
     }
+
+    useEffect(() => {
+        let active = document.getElementsByClassName('active-tab') 
+        while(active.length > 0){
+            active[0].classList.remove('active-tab')
+        }
+
+        if(selected){
+            let index = countries.findIndex(country => country.alpha3Code === selected.alpha3Code)
+
+            const list = document.getElementById("countries-list").children
+            const element = list.item(index)                                    //select <tr> element of the searched country
+            element.scrollIntoView()
+            let children = element.children
+            for (let item of children){
+                item.classList.add('active-tab')
+            }
+        }
+     
+    }, [selected, countries])
 
     return (
         <div className="statistics-container">

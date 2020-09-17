@@ -19,7 +19,7 @@ const markerIcon = new Icon({
 const World = () => {
     //const [color, setColor] = useState("#000")
     //const latestColor = useRef("")
-    const { selected, layersRef, setActiveLayer, findCountryByCode, activeProperty, resetActiveLayer, theme, setSlide, themeRef } = useContext(WorldContext)
+    const { selected, layersRef, setActiveLayer, findCountryByCode, activeProperty, resetActiveLayer, theme, setSlide, themeRef} = useContext(WorldContext)
     const mapRef = useRef()
     const prevStyle = useRef(mapStyles["light"].default)
 
@@ -37,6 +37,14 @@ const World = () => {
     })
 
     const onCountryClick = (event) => {
+        // const index = countries.findIndex(country => country.alpha3Code === event.target.feature.properties.ISO_A3)
+        // const list = document.getElementById("countries-list").children
+        // const element = list.item(index)                                    //select <tr> element of the searched country
+        // element.scrollIntoView()
+        // let children = element.children
+        // for (let item of children){
+        //     item.classList.add('active-tab')
+        // }
         setActiveLayer(event.target)
     }
 
@@ -104,9 +112,12 @@ const World = () => {
 
     const onMapClick = () => {
         let isHovering = document.getElementById("country-hover-name").innerHTML    //simple trick to understand if user clicked on the map but outside every polygon
-        if(!isHovering){
+        if(!isHovering && selected){    //se c'e una nazione selezionata e si clicca fuori dal layer del monfo resetta activelayer
             resetActiveLayer()
+            console.log('map click')
             setSlide(1)
+            //const tableBody = document.getElementsByClassName("table-body")[0]    //scroll table to top when deselecting country
+            //tableBody.scrollTop = 0
         }
     } 
 
