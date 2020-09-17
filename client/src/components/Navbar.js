@@ -38,7 +38,10 @@ const Navbar = () => {
     return (
         <div className="header-container">
             <header>
-                <div className="logo">Countrip</div>
+                <div className="logo">
+					<img src="/icons/logo.svg" alt="logo"/>
+					Countrip
+				</div>
 
                 <Searchbar />
 

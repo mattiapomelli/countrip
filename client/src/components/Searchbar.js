@@ -3,7 +3,7 @@ import { WorldContext } from "../context/WorldContext"
 import "../css/searchbar.css"
 
 const Searchbar = () => {
-    const { countries, findLayerByCode, setActiveLayer, resetActiveLayer } = useContext(WorldContext)
+    const { countries, findLayerByCode, setActiveLayer, resetActiveLayer, tableRef } = useContext(WorldContext)
     const [search, setSearch] = useState("")
     const prevSearch = useRef('')
 
@@ -14,6 +14,8 @@ const Searchbar = () => {
             return
         }
 
+        
+
         if (search !== ""){
             const index = countries.findIndex((country) => {
                 let regex = new RegExp("^" + search + ".*", "g")
@@ -21,6 +23,7 @@ const Searchbar = () => {
             });  //find position of searched country in the table
                       
             if(index > -1){
+                
                 const layer = findLayerByCode(countries[index].alpha3Code)
                 setActiveLayer(layer)
 
@@ -31,9 +34,10 @@ const Searchbar = () => {
         // else {
         //     const tableBody = document.getElementsByClassName("table-body")[0]
         //     tableBody.scrollTop = 0
-        // }      
+        // } 
+           
 
-    }, [search, countries, findLayerByCode, setActiveLayer, resetActiveLayer])
+    }, [search, countries, findLayerByCode, setActiveLayer, resetActiveLayer, tableRef])
 
     useEffect(() => {
         prevSearch.current = search

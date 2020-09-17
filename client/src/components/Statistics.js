@@ -5,10 +5,11 @@ import { formatNumber } from "../utils/utils"
 
 
 const Statistics = () => {
-    const { countries, findLayerByCode, setActiveLayer, sortCountries, setActiveProperty, activeProperty, selected } = useContext(WorldContext)
+    const { countries, findLayerByCode, setActiveLayer, sortCountries, setActiveProperty, activeProperty, selected, tableRef } = useContext(WorldContext)
     const [ sortType, setSortType ] = useState({name: false, population: false, area: false})
 
     const selectCountry = (code) => {
+        tableRef.current.classList.add('smooth-scroll')
         const layer = findLayerByCode(code)
         //resetActiveLayer()
         setActiveLayer(layer)
@@ -37,20 +38,28 @@ const Statistics = () => {
         while(active.length > 0){
             active[0].classList.remove('active-tab')
         }
-
+        console.log('wow')
         if(selected){
             let index = countries.findIndex(country => country.alpha3Code === selected.alpha3Code)
 
             const list = document.getElementById("countries-list").children
             const element = list.item(index)                                    //select <tr> element of the searched country
             element.scrollIntoView()
+            tableRef.current.classList.remove('smooth-scroll') 
+            
             let children = element.children
             for (let item of children){
                 item.classList.add('active-tab')
             }
         }
      
-    }, [selected, countries])
+    }, [selected, countries, tableRef])
+
+    const scrollTableToTop = () => {
+        tableRef.current.classList.add('smooth-scroll')
+        tableRef.current.scrollTop = 0
+        tableRef.current.classList.remove('smooth-scroll')
+    }
 
     return (
         <div className="statistics-container">
@@ -88,7 +97,7 @@ const Statistics = () => {
                         </thead>
                     </table>
                 </div>
-                <div className="table-body">
+                <div className="table-body" ref={tableRef}>
                     <table>
                         <tbody id ="countries-list">
                             {
@@ -102,10 +111,15 @@ const Statistics = () => {
                                         </tr>
                                     )
                                 })
-                            }  
+                            }
                         </tbody>
                     </table>
                 </div>
+                <svg className="scroll-to-top pointer" onClick={scrollTableToTop} viewBox="0 0 50 50" fill="none">
+                    <circle cx="25" cy="25" r="25"/>
+                    <path d="M13 29L25 17L37 29" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+
             </div>
         </div>
     )

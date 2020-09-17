@@ -19,10 +19,6 @@
     font-family: 'Poppins', sans-serif;
 }
 
-.active-tab {
-    background-color: rgba(255, 99, 71, 0.315) !important;
-}
-
 .cancel-icon {
     position: absolute;
     right: 10px;

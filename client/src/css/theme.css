@@ -12,6 +12,7 @@
 	--legend-background: #fff;
 	--even-table-rows: #fff;
 	--tooltip-background: #fff;
+	--active-tab-color:  rgba(255, 99, 71, 0.315);
 }
 
 /* Dark mode */
@@ -28,6 +29,7 @@
 	--legend-background: rgb(26, 26, 26);
 	--even-table-rows: #000;
 	--tooltip-background: rgb(41, 41, 41);
+	--active-tab-color:  rgba(255, 169, 71, 0.473);
 }
 
 /* Theme change transition */

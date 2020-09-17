@@ -17,6 +17,7 @@ export default ({ children }) => {
     const [slide, setSlide] = useState(1)   //current slide of country card, stored in context because must be remembered even when active country changes
     const [theme, setTheme] = useState("light")
     const themeRef  = useRef("light")
+    const tableRef = useRef()
 
     useEffect(() => {
         themeRef.current = theme
@@ -139,7 +140,7 @@ export default ({ children }) => {
             <WorldContext.Provider
             value={{selected, layersRef, countries, setCountries, findLayerByCode, setActiveLayer, resetActiveLayer,
                 findCountryByCode, sortCountries, activeProperty, setActiveProperty, activeLayer, average, slide, setSlide, theme,
-                setTheme, themeRef}}>
+                setTheme, themeRef, tableRef}}>
                 { children }
             </WorldContext.Provider>
             }
