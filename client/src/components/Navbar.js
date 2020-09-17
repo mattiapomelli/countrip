@@ -36,21 +36,23 @@ const Navbar = () => {
     // }
     
     return (
-        <div className="header-container">
+		<div className="header-container">
             <header>
                 <div className="logo">
 					<img src="/icons/logo.svg" alt="logo"/>
-					Countrip
+					<span>Countrip</span>
 				</div>
 
                 <Searchbar />
 
                 <div className="toggle-container">
+					<span>Dark mode</span>
                     <input type="checkbox" id="switch" name="theme" onChange={toggleTheme}/><label htmlFor="switch">Toggle</label>
-					<span>dark mode</span>
                 </div>
+
+				
             </header>
-        </div>
+		</div>
     )
 }
 

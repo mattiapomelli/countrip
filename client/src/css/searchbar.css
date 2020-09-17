@@ -1,11 +1,16 @@
 /* Search Bar */
 
 .search-container {
-    position: relative;
-    grid-area: search;
+    text-align: center;
 }
 
-.search-container input {
+.input-container {
+    position: relative;
+    margin: auto;
+    max-width: 240px;
+}
+
+.input-container input {
     width: 100%;
     margin: 0;
     padding: 5px 40px;
@@ -28,7 +33,7 @@
     border: none;
     cursor: pointer;
 }
-.search-container span {
+.input-container span {
     font-size: 1.4em;
     color: var(--text-color);
 }

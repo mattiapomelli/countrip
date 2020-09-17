@@ -52,9 +52,11 @@ const Searchbar = () => {
 
     return (
         <div className="search-container">
-            <span className="material-icons search-icon">search</span>
-            <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search.."/>
-            <span className="material-icons cancel-icon" onClick={cancelSearch}>clear</span>
+            <div className="input-container">
+                <span className="material-icons search-icon">search</span>
+                <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search.."/>
+                <span className="material-icons cancel-icon" onClick={cancelSearch}>clear</span>
+            </div>
         </div>
     )
 }

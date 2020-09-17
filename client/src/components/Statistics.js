@@ -117,7 +117,7 @@ const Statistics = () => {
                 </div>
                 <svg className="scroll-to-top pointer" onClick={scrollTableToTop} viewBox="0 0 50 50" fill="none">
                     <circle cx="25" cy="25" r="25"/>
-                    <path d="M13 29L25 17L37 29" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M13 29L25 17L37 29" stroke="white" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
 
             </div>

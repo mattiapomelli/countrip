@@ -2,25 +2,70 @@
     font-family: 'Poppins', sans-serif;
     background: var(--navbars-color);
     color: white;
-    width: 100%;
-    padding: 0rem 3rem;
-    height: 7vh;
-    box-sizing: border-box;
 }
+
+/* Navbar */
 
 header {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+	height: 7vh;
+	box-sizing: border-box;
+	width: 90%;
+	margin: auto;
+	display: flex;
+	align-items: center;
 }
 
+header div {
+	flex: 1;
+}
+
+@media only screen and (max-width: 600px) {
+	header {
+		height: 12vh;
+		padding: 8px;
+		flex-wrap: wrap;
+	}
+	.search-container {
+		order: 2;
+	}
+	.input-container {
+		max-width: 100%;
+	}
+	.logo {
+		flex-basis: 50%;
+	}
+	.toggle-container {
+		flex-basis: 50%;
+	}
+}
+
+/* Logo */
+
 .logo {
-    font-weight: 800;
+	display: flex;
+	align-items: center;
+}
+.logo span {
+	margin-left: 10px;
+}
+.logo span {
+	font-weight: 800;
+	font-size: 1.2rem;
 }
 
 
 /* Theme switcher */
+
+.toggle-container {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+}
+.toggle-container span {
+	font-size: 0.9rem;
+	font-weight: 500;
+	margin-right: 0.6rem;
+}
 
 input[type=checkbox]{
 	height: 0;
@@ -62,13 +107,4 @@ input:checked + label:after {
 
 label:active:after {
 	width: calc(var(--theme-toggler-height) * 1.1);
-}
-
-.toggle-container {
-	display: flex;
-	align-items: center;
-}
-.toggle-container span {
-	font-size: 0.8rem;
-	margin-left: 0.6rem;
 }
