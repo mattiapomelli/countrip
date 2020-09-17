@@ -9,7 +9,6 @@ const CountryCard = () => {
     //const [ slide, setSlide ] = useState(1) // current slide of slideshow
 
     useEffect(() => {   
-        console.log("yo")
         const properties = ["population", "area", "density", "gini"]
         //calculate width of statistic lines for every property
         properties.forEach(property => {
@@ -57,7 +56,7 @@ const CountryCard = () => {
 
                 <button className="slide-arrow" id="left-arrow" onClick={(e) => {if(!e.currentTarget.disabled){setSlide(slide - 1)}}}>
                     <svg viewBox="0 0 14 23" fill="none">
-                        <path d="M11.5 21L2 11.5L11.5 2" stroke="#3D3D3D" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M11.5 21L2 11.5L11.5 2" stroke="#3D3D3D" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
                 </button>
 
@@ -186,7 +185,7 @@ const CountryCard = () => {
 
                 <button className="slide-arrow" id="right-arrow" onClick={(e) => {if(!e.currentTarget.disabled){setSlide(slide + 1)}}}>
                     <svg viewBox="0 0 14 23" fill="none">
-                        <path d="M11.5 21L2 11.5L11.5 2" stroke="#3D3D3D" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M11.5 21L2 11.5L11.5 2" stroke="#3D3D3D" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
                 </button>
 

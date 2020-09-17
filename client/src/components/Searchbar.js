@@ -3,11 +3,12 @@ import { WorldContext } from "../context/WorldContext"
 import "../css/searchbar.css"
 
 const Searchbar = () => {
-    const { countries } = useContext(WorldContext)
+    const { countries, findLayerByCode, setActiveLayer, resetActiveLayer } = useContext(WorldContext)
     const [search, setSearch] = useState("")
     const prevSearch = useRef('')
 
     useEffect(() => {
+        console.log('yo')
         //remove active style
         let active = document.getElementsByClassName('active-tab') 
         while(active.length > 0){
@@ -29,23 +30,35 @@ const Searchbar = () => {
                 for (let item of children){
                     item.classList.add('active-tab')
                 }
+                const layer = findLayerByCode(countries[index].alpha3Code)
+                setActiveLayer(layer)
+
+            } else {
+                resetActiveLayer()
             }
         } else {
             const tableBody = document.getElementsByClassName("table-body")[0]
             tableBody.scrollTop = 0
         }      
 
-    }, [search, countries])
+    }, [search, countries, findLayerByCode, setActiveLayer, resetActiveLayer])
 
     useEffect(() => {
         prevSearch.current = search
     }, [search])
 
+    const cancelSearch = () => {
+        if(search !== ''){
+            resetActiveLayer()
+        }
+        setSearch('')
+    }
+
     return (
         <div className="search-container">
             <span className="material-icons search-icon">search</span>
             <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search.."/>
-            <span className="material-icons cancel-icon" onClick={() => setSearch('')}>clear</span>
+            <span className="material-icons cancel-icon" onClick={cancelSearch}>clear</span>
         </div>
     )
 }

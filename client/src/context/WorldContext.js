@@ -1,4 +1,4 @@
-import React, {createContext, useState, useRef, useEffect } from 'react'
+import React, {createContext, useState, useRef, useEffect, useCallback } from 'react'
 import axios from 'axios'
 import L from "leaflet"
 import countryCodes from "../utils/countryCodes"
@@ -73,13 +73,25 @@ export default ({ children }) => {
         .catch(err => console.log(err)) 
     }
 
-    const findLayerByCode = (code) => {
+    const findLayerByCode = useCallback(
+        (code) => {
         const layers = layersRef.current.leafletElement.getLayers()
         const result = layers.find(layer => layer.feature.properties.ISO_A3 === code)
         return result
-    }
+    }, [])
 
-    const setActiveLayer = (layer) => { //set active layer on the map and give it the proper style
+    const resetActiveLayer = useCallback(
+        () => {    //reset active layer and bring style back to normal
+        setSelected(null)
+        if(activeLayer.current){
+            activeLayer.current.setStyle(mapStyles[themeRef.current].nonActive)
+            activeLayer.current.active = false
+            activeLayer.current = null
+        }
+    }, [])
+
+    const setActiveLayer = useCallback(
+        (layer) => { //set active layer on the map and give it the proper style
         if(!layer.active){  //in this way we don't re-fetch data and change everything if the active country is clicked
             resetActiveLayer()
             getCountryData(layer.feature.properties.ISO_A3)
@@ -91,16 +103,7 @@ export default ({ children }) => {
             layer.active = true  //attaching active property to the layer so we can use it to handle styling
             activeLayer.current = layer
         }
-    }
-
-    const resetActiveLayer = () => {    //reset active layer and bring style back to normal
-        setSelected(null)
-        if(activeLayer.current){
-            activeLayer.current.setStyle(mapStyles[themeRef.current].nonActive)
-            activeLayer.current.active = false
-            activeLayer.current = null
-        }
-    }
+    }, [resetActiveLayer])
 
     const findCountryByCode = (code) => {
         const result = countries.find(country => country.alpha3Code === code)
