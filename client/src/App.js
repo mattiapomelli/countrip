@@ -4,7 +4,7 @@ import CountryCard from './components/CountryCard'
 import Statistics from './components/Statistics'
 import Navbar from './components/Navbar'
 import './css/theme.css'
-import "./style.css"
+import "./css/style.css"
 import { WorldContext } from './context/WorldContext';
 
 

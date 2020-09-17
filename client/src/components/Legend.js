@@ -2,6 +2,7 @@ import React, { useContext } from "react"
 import { WorldContext } from "../context/WorldContext"
 import { parameters, formatNumber } from "../utils/utils"
 import mapStyles from "../utils/mapStyles"
+import "../css/legend.css"
 
 const Legend = () => {
     const { activeProperty, theme } = useContext(WorldContext)

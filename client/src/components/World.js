@@ -2,7 +2,7 @@ import React, { useContext, useRef, useEffect } from "react"
 import { Map, GeoJSON, Marker } from "react-leaflet"
 import { Icon } from "leaflet";
 import Control from "react-leaflet-control"
-import countriesCoords from "../data/countriesSimplified10.json"
+import countriesCoords from "../data/countries.json"
 import "leaflet/dist/leaflet.css"
 import "../css/world.css"
 import { WorldContext } from "../context/WorldContext"
