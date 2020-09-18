@@ -43,7 +43,8 @@ const Statistics = () => {
 
             const list = document.getElementById("countries-list").children
             const element = list.item(index)                                    //select <tr> element of the searched country
-            element.scrollIntoView()
+            tableRef.current.scrollTop = element.offsetTop
+            //element.scrollIntoView()
             tableRef.current.classList.remove('smooth-scroll') 
             
             let children = element.children

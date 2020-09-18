@@ -32,6 +32,7 @@ const World = () => {
     })
 
     const onCountryClick = (event) => {
+        //tableRef.current.classList.add('smooth-scroll')
         setActiveLayer(event.target)
     }
 
@@ -101,7 +102,6 @@ const World = () => {
         let isHovering = document.getElementById("country-hover-name").innerHTML    //simple trick to understand if user clicked on the map but outside every polygon
         if(!isHovering && selected){    //se c'e una nazione selezionata e si clicca fuori dal layer del monfo resetta activelayer
             resetActiveLayer()
-            console.log('map click')
             setSlide(1)
             //const tableBody = document.getElementsByClassName("table-body")[0]    //scroll table to top when deselecting country
             //tableBody.scrollTop = 0
