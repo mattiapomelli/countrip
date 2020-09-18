@@ -24,27 +24,14 @@ const World = () => {
     const prevStyle = useRef(mapStyles["light"].default)
 
     useEffect(() => {
-         //latestColor.current = color
         //Map Setup
 		const map = mapRef.current.leafletElement
 
         map.setMinZoom(0)
         map.setMaxZoom(14)
-		// let southWest = L.latLng(-85, -300),
-		// northEast = L.latLng(85, 300);
-		// let bounds = L.latLngBounds(southWest, northEast);
-		// map.setMaxBounds(bounds)
     })
 
     const onCountryClick = (event) => {
-        // const index = countries.findIndex(country => country.alpha3Code === event.target.feature.properties.ISO_A3)
-        // const list = document.getElementById("countries-list").children
-        // const element = list.item(index)                                    //select <tr> element of the searched country
-        // element.scrollIntoView()
-        // let children = element.children
-        // for (let item of children){
-        //     item.classList.add('active-tab')
-        // }
         setActiveLayer(event.target)
     }
 

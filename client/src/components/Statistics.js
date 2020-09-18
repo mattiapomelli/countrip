@@ -38,7 +38,6 @@ const Statistics = () => {
         while(active.length > 0){
             active[0].classList.remove('active-tab')
         }
-        console.log('wow')
         if(selected){
             let index = countries.findIndex(country => country.alpha3Code === selected.alpha3Code)
 
