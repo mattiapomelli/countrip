@@ -14,11 +14,10 @@ const Searchbar = () => {
             return
         }
 
-        
 
         if (search !== ""){
+            let regex = new RegExp("^" + search.toLowerCase() + ".*", "g")
             const index = countries.findIndex((country) => {
-                let regex = new RegExp("^" + search + ".*", "g")
                 return regex.test(country.name.toLowerCase())
             });  //find position of searched country in the table
                       
