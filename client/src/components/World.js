@@ -46,6 +46,10 @@ const World = () => {
     };
 
     const onCountryHover = (event) => {
+        //if device is touchscreen don't handle hover state
+        if(('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0)) {
+            return
+        }
         let layer = event.target;
         //get current style of layer and store it in prevStyle.current
         prevStyle.current = { color: layer.options.color, fillColor: layer.options.fillColor, fillOpacity: layer.options.fillOpacity }
