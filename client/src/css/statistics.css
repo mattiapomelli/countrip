@@ -15,7 +15,6 @@
 table {
     width: 100%;
     border-collapse: collapse;
-    font-family: 'Poppins', sans-serif;
     font-size: 0.8rem;
 }
 
@@ -88,7 +87,8 @@ tbody tr:nth-child(even) {
     display: block;
     height: 100%;
     /* max-height: calc(40vh - var(--table-headers-height) - var(--grid-gap-size)*4); */
-    overflow: overlay;  /* other option could be auto */
+    overflow-y: overlay;  /* other option could be auto */
+    overflow-x: hidden;
     background-color: var(--card-body);
     border-radius: 0 0 10px 10px;
 }

@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useEffect } from "react"
+import React, { useContext, useRef, useEffect, useState } from "react"
 import { Map, GeoJSON, Marker } from "react-leaflet"
 import { Icon } from "leaflet";
 import Control from "react-leaflet-control"
@@ -22,6 +22,7 @@ const World = () => {
     const { selected, layersRef, setActiveLayer, findCountryByCode, activeProperty, resetActiveLayer, theme, setSlide, themeRef} = useContext(WorldContext)
     const mapRef = useRef()
     const prevStyle = useRef(mapStyles["light"].default)
+    const [isHovering, setIsHovering] = useState(false)
 
     useEffect(() => {
         //Map Setup
@@ -46,6 +47,7 @@ const World = () => {
     };
 
     const onCountryHover = (event) => {
+        setIsHovering(true)
         //if device is touchscreen don't handle hover state
         if(('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0)) {
             return
@@ -62,6 +64,7 @@ const World = () => {
     }
 
     const resetHighlight = (event) => {
+        setIsHovering(false)
         //set style back to the style before going hover it
         event.target.setStyle(prevStyle.current)
         if(event.target.active) {
@@ -103,7 +106,7 @@ const World = () => {
     }, [selected])
 
     const onMapClick = () => {
-        let isHovering = document.getElementById("country-hover-name").innerHTML    //simple trick to understand if user clicked on the map but outside every polygon
+        //let isHovering = document.getElementById("country-hover-name").innerHTML    //simple trick to understand if user clicked on the map but outside every polygon
         if(!isHovering && selected){    //se c'e una nazione selezionata e si clicca fuori dal layer del monfo resetta activelayer
             resetActiveLayer()
             setSlide(1)
