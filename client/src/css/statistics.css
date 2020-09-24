@@ -1,6 +1,7 @@
 .statistics-container {
     height: 100%;
     grid-area: stats;
+    font-family: 'Poppins', sans-serif;
 }
 
 .table-container {
