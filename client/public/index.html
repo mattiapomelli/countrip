@@ -9,12 +9,41 @@
       name="description"
       content="Web site created using create-react-app"
     />
+    <style>
+      /* Loading screen */
+      body {
+          background-color: #c4cbdd;
+          margin: 0;
+          height: 100%;
+      }
+      #root:empty {
+        position: absolute;
+        top: calc(50% - 1em);
+        left: calc(50% - 1em);
+        width: 3em;
+        height: 3em;
+        border: 0.5em solid #484d7627;
+        border-left: 0.5em solid #484D76;
+        border-radius: 50%;
+        animation: loadspinner 1.1s infinite linear;
+      }
+
+      @keyframes loadspinner {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
     <title>Countrip - Learn About Countries</title>
+
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>

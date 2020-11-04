@@ -136,7 +136,7 @@ export default ({ children }) => {
 
     return (    
         <div>
-            { !loaded ? <div className="loading-container"><h1>Loading...</h1></div> : 
+            { !loaded ? <div className="loading-container"><h1>Loading map data...</h1></div> : 
             <WorldContext.Provider
             value={{selected, layersRef, countries, setCountries, findLayerByCode, setActiveLayer, resetActiveLayer,
                 findCountryByCode, sortCountries, activeProperty, setActiveProperty, activeLayer, average, slide, setSlide, theme,

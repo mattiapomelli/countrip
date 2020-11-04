@@ -53,7 +53,7 @@ const Searchbar = () => {
         <div className="search-container">
             <div className="input-container">
                 <span className="material-icons search-icon">search</span>
-                <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search.."/>
+                <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search for a country..."/>
                 <span className="material-icons cancel-icon" onClick={cancelSearch}>clear</span>
             </div>
         </div>
