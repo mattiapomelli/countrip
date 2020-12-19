@@ -1,2 +1,2 @@
 # Countrip
-An Interactive Map showing statistics and information about countries coming [REST Countries API](https://restcountries.eu/ "REST Countries")
+An Interactive Map that displays statistics and information about countries coming from [REST Countries API](https://restcountries.eu/ "REST Countries")
